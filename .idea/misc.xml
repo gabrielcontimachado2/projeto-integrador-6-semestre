@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/drawable/ic_btn_add.xml" value="0.2615" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/drawable/ic_busca.xml" value="0.2615" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/drawable/ic_img_enter_button.xml" value="0.2615" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/drawable/ic_img_fechar.xml" value="0.3405" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/drawable/ic_img_register_button.xml" value="0.2615" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/activity_cadastrar_instituicao.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/activity_cadastro_animal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/activity_cadastro_integrante.xml" value="0.2546875" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/activity_login.xml" value="0.25625" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/app_bar_main.xml" value="0.18" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/home_fragment.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/integrante_fragment.xml" value="0.25625" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/integrantes_fragment.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/layout/nav_header_main.xml" value="0.5" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/menu/nav_bottom_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/faculdade/app/src/main/res/menu/nav_top_bar.xml" value="0.25625" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/activity_cadastrar_instituicao.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/activity_cadastro_integrante.xml" value="0.25" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/activity_main2.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/activity_perfil_instituicao.xml" value="0.25625" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rowi/Desktop/vetfootprint/app/src/main/res/layout/home_fragment.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

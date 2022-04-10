@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">VetFootPrint</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <!-- Menus -->
+    <string name="menu_home">Home</string>
+    <string name="menu_integrante">Integrantes</string>
+
+    <!-- inputs -->
+    <!-- Telas login -->
+    <string name="user_name">Digite seu e-mail</string>
+    <string name="user_password">Digite sua senha</string>
+
+    <!-- Tela cadastro animal-->
+    <string name="screen_add_dog">Cadastro Animal</string>
+    <string name="nome_animal">Digite o nome do animal</string>
+    <string name="raca_animal">Digite a raça do animal</string>
+    <string name="idade_animal">Digite a idade do animal</string>
+    <string name="porte_animal">Digite o porte do animal</string>
+    <string name="medicamento_animal">Digite os medicamentos</string>
+    <string name="horario_medicamento">Digite o horários dos medicamentos</string>
+    <string name="observacoes_animal">Digite observações sobre o animal</string>
+    <!-- buttons tela cadastro animal -->
+    <string name="btn_historico_vacinacao">Histórico Vacinação</string>
+    <string name="btn_foto_animal">Foto do animal</string>
+
+
+    <!-- Tela cadastro instituicao-->
+    <string name="screen_add_instituição">Cadastro Instituição</string>
+    <string name="nome_instituicao">Digite o nome da instituição</string>
+    <string name="email_instituicao">Digite o E-mail para sua conta</string>
+    <string name="senha_instituicao">Digite a senha para sua conta</string>
+    <string name="senha_confirmar">Digite a confirmação da sua senha</string>
+    <string name="cnpj_instituicao">Digite o CNPJ da sua instituição</string>
+    <string name="telefone_instituicao">Digite o telefone da sua instituição</string>
+    <string name="endereco_instituicao">Digite o endereço da sua instituição</string>
+    <!-- buttons tela cadastro instituição -->
+    <string name="btn_logo_instituição">Logo Da Instituição</string>
+
+
+    <!-- Tela cadastro integrante-->
+    <string name="screen_add_integrante">Cadastro Integrantes</string>
+    <string name="nome_integrante">Digite o nome do integrante</string>
+    <string name="email_integrante">Digite o E-mail do integrante</string>
+    <string name="senha_integrante">Digite a senha para conta do integrante</string>
+    <string name="senha_confirmar_integrante">Digite a confirmação da senha</string>
+    <string name="funcao_integrante">Digite a função do integrante</string>
+    <string name="cpf_integrante">Digite o CPF do integrante</string>
+    <string name="rg_integrante">Digite o RG do integrante</string>
+    <string name="telefone_integrante">Digite o telefone do integrante</string>
+    <!-- buttons tela cadastro instituição -->
+    <string name="btn_documento_integrante">Documentos</string>
+    <string name="btn_fotos_integrante">Foto Integrante</string>
+
+
+    <!-- buttons -->
+    <string name="btn_register_institution">Cadastrar Instituição</string>
+    <string name="btn_enter">Entrar</string>
+    <string name="menu_busca">buscar</string>
+    <string name="menu_sair">Sair</string>
+
+
+</resources>
