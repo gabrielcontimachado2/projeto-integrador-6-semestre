@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47758915682",
+    "project_id": "vetfootprint-c2815",
+    "storage_bucket": "vetfootprint-c2815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47758915682:android:477a9465ef41a15dc6393b",
+        "android_client_info": {
+          "package_name": "com.example.vetfootprint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47758915682-ft3dh6vfluost2g9fj8qpbbngtlkosh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbRxRvmeJYZJd2r0bY8solyQZw4EmWd0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47758915682-ft3dh6vfluost2g9fj8qpbbngtlkosh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
