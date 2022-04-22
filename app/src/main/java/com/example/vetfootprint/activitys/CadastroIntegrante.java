@@ -54,7 +54,7 @@ public class CadastroIntegrante extends AppCompatActivity {
                 finish();
                 break;
             case R.id.floating_btn_cadastrar_integrante_tela:
-                saveData(testFields());
+
         }
     }
 

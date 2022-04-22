@@ -1,113 +1,86 @@
 package com.example.vetfootprint.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserModel {
 
-    private DatabaseReference mDatabase;
-    String userName = "";
-    String userEmail = "";
-    String userPassword = "";
-    String institutionCnpj = "";
-    String userPhone = "";
-    String userAddress = "";
-    String userFuction = "";
-    String userCpf = "";
-    String userRg = "";
+    String userNameInstitution;
+    String userEmailInstituion;
+    String userPasswordIstitution;
+    String userCnpjInstitution;
+    String userPhoneInstitution;
+    String userAddressInstitution;
+    String userRoleIstitution;
 
+    public UserModel(String userNameInstitution, String userEmailInstituion, String userPasswordIstitution, String userCnpjInstitution, String userPhoneInstitution, String userAddressInstitution, String userRoleIstitution) {
 
+        Log.d("myTag", "This is my message" + userNameInstitution + " ");
 
-    public UserModel(){
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        this.userNameInstitution = userNameInstitution;
+        this.userEmailInstituion = userEmailInstituion;
+        this.userPasswordIstitution = userPasswordIstitution;
+        this.userCnpjInstitution = userCnpjInstitution;
+        this.userPhoneInstitution = userPhoneInstitution;
+        this.userAddressInstitution = userAddressInstitution;
+        this.userRoleIstitution = userRoleIstitution;
     }
 
-    public void getUser(){
-
+    public String getUserNameInstitution() {
+        return userNameInstitution;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public void setUserNameInstitution(String userNameInstitution) {
+        this.userNameInstitution = userNameInstitution;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public String getUserEmailInstituion() {
+        return userEmailInstituion;
     }
 
-    String userRole = "";
-
-
-    public String getUserName() {
-        return userName;
+    public void setUserEmailInstituion(String userEmailInstituion) {
+        this.userEmailInstituion = userEmailInstituion;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getUserPasswordIstitution() {
+        return userPasswordIstitution;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public void setUserPasswordIstitution(String userPasswordIstitution) {
+        this.userPasswordIstitution = userPasswordIstitution;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public String getUserCnpjInstitution() {
+        return userCnpjInstitution;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public void setUserCnpjInstitution(String userCnpjInstitution) {
+        this.userCnpjInstitution = userCnpjInstitution;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public String getUserPhoneInstitution() {
+        return userPhoneInstitution;
     }
 
-    public String getInstitutionCnpj() {
-        return institutionCnpj;
+    public void setUserPhoneInstitution(String userPhoneInstitution) {
+        this.userPhoneInstitution = userPhoneInstitution;
     }
 
-    public void setInstitutionCnpj(String institutionCnpj) {
-        this.institutionCnpj = institutionCnpj;
+    public String getUserAddressInstitution() {
+        return userAddressInstitution;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public void setUserAddressInstitution(String userAddressInstitution) {
+        this.userAddressInstitution = userAddressInstitution;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+    public String getUserRoleIstitution() {
+        return userRoleIstitution;
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public void setUserRoleIstitution(String userRoleIstitution) {
+        this.userRoleIstitution = userRoleIstitution;
     }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
-
-    public String getUserFuction() {
-        return userFuction;
-    }
-
-    public void setUserFuction(String userFuction) {
-        this.userFuction = userFuction;
-    }
-
-    public String getUserCpf() {
-        return userCpf;
-    }
-
-    public void setUserCpf(String userCpf) {
-        this.userCpf = userCpf;
-    }
-
-    public String getUserRg() {
-        return userRg;
-    }
-
-    public void setUserRg(String userRg) {
-        this.userRg = userRg;
-    }
-
-
 }
