@@ -11,10 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
+import com.example.vetfootprint.controller.AnimalController;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CadastroAnimal extends AppCompatActivity implements View.OnClickListener {
-
+    private AnimalController animalController = new AnimalController();//Instancia da controller no listenner
     private Button btnFecharCadastroAnimal;
     private FloatingActionButton btnConfirmarCadastroAnimal;
     private EditText edtNomeAnimal,
@@ -58,8 +59,9 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
 
 
     private void saveData(boolean isSuccess) {
+
         // Tudo dentro de um try
-        if (isSuccess) {
+        if (isSuccess){
             Toast.makeText(this, "Salvado com sucesso! Parabéns!", Toast.LENGTH_SHORT).show();
             hideKeyboardFrom(this, edtObservacoesAnimal);
             limparCampos();
@@ -92,7 +94,15 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         if (sNomeDoAnimal.isEmpty() || sRacaDoAnimal.isEmpty() || sIdadeDoAnimal.isEmpty() || sPorteDoAnimal.isEmpty() || sMedicamentoAnimal.isEmpty()|| sHorarioMedicamento.isEmpty() || sObservacoesDoAnimal.isEmpty()) {
             return false;
         }
-
+            animalController.cadastrarAnimal(
+                    sNomeDoAnimal,
+                    sObservacoesDoAnimal,
+                    sPorteDoAnimal,
+                    sRacaDoAnimal,
+                    sMedicamentoAnimal,
+                    sHorarioMedicamento,
+                    sIdadeDoAnimal
+                    ); //Cadastrar o bixim
         return true;
     }
 
