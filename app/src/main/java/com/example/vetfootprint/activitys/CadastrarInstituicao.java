@@ -60,7 +60,6 @@ public class CadastrarInstituicao extends AppCompatActivity {
         edtTelefoneInstituicao = findViewById(R.id.edttext_telefone_instituicao);
         edtEnderecoInstituicao = findViewById(R.id.edttext_endereco_instituicao);
 
-
     }
 
     public void onClick(View view) {

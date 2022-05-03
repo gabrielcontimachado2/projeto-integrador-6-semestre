@@ -25,6 +25,13 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
                      edtMedicamentoAnimal,
                      edtHorarioMedicamento,
                      edtObservacoesAnimal;
+    String sNomeDoAnimal,
+        sRacaDoAnimal,
+        sIdadeDoAnimal,
+        sPorteDoAnimal,
+        sMedicamentoAnimal,
+        sHorarioMedicamento,
+        sObservacoesDoAnimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,14 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         edtMedicamentoAnimal = findViewById(R.id.edttext_medicamento_animal);
         edtHorarioMedicamento = findViewById(R.id.edttext_horario_medicamento);
         edtObservacoesAnimal = findViewById(R.id.edttext_observacoes_animal);
+        //Variaveis
+        String sNomeDoAnimal = edtNomeAnimal.getText().toString();
+        String sRacaDoAnimal = edtRacaAnimal.getText().toString();
+        String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
+        String sPorteDoAnimal = edtPorteAnimal.getText().toString();
+        String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
+        String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
+        String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
 
     }
 
@@ -62,6 +77,7 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
 
         // Tudo dentro de um try
         if (isSuccess){
+
             Toast.makeText(this, "Salvado com sucesso! Parabéns!", Toast.LENGTH_SHORT).show();
             hideKeyboardFrom(this, edtObservacoesAnimal);
             limparCampos();
@@ -83,26 +99,10 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
     }
 
     public boolean testFields() {
-        String sNomeDoAnimal = edtNomeAnimal.getText().toString();
-        String sRacaDoAnimal = edtRacaAnimal.getText().toString();
-        String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
-        String sPorteDoAnimal = edtPorteAnimal.getText().toString();
-        String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
-        String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
-        String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
 
         if (sNomeDoAnimal.isEmpty() || sRacaDoAnimal.isEmpty() || sIdadeDoAnimal.isEmpty() || sPorteDoAnimal.isEmpty() || sMedicamentoAnimal.isEmpty()|| sHorarioMedicamento.isEmpty() || sObservacoesDoAnimal.isEmpty()) {
             return false;
         }
-            animalController.cadastrarAnimal(
-                    sNomeDoAnimal,
-                    sObservacoesDoAnimal,
-                    sPorteDoAnimal,
-                    sRacaDoAnimal,
-                    sMedicamentoAnimal,
-                    sHorarioMedicamento,
-                    sIdadeDoAnimal
-                    ); //Cadastrar o bixim
         return true;
     }
 
@@ -110,4 +110,6 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         InputMethodManager imm = (InputMethodManager) context.getSystemService(CadastroAnimal.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+
 }

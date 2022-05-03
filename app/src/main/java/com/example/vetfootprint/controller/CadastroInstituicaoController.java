@@ -50,6 +50,7 @@ public class CadastroInstituicaoController {
 
                                    if (task.isSuccessful()){
                                        operacao = true;
+                                       /*TODO transformar operação para string com mensagem do toast*/
                                    }
                                    else{
                                        operacao = false;
