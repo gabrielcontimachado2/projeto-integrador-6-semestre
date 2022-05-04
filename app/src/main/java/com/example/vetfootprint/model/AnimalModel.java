@@ -8,6 +8,9 @@ public class AnimalModel {
     String animalMedicine = "";
     String animalTimeMedicine = "";
     String animalObs = "";
+    public AnimalModel(){
+
+    }
     public AnimalModel(String animalName, String animelBreed, String animalAge, String animalSize, String animalMedicine, String animalTimeMedicine, String animalObs) {
         this.animalName = animalName;
         this.animelBreed = animelBreed;

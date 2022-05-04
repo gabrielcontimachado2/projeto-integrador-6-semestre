@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.AnimalController;
+import com.example.vetfootprint.model.AnimalModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CadastroAnimal extends AppCompatActivity implements View.OnClickListener {
@@ -25,13 +26,13 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
                      edtMedicamentoAnimal,
                      edtHorarioMedicamento,
                      edtObservacoesAnimal;
-    String sNomeDoAnimal,
-        sRacaDoAnimal,
-        sIdadeDoAnimal,
-        sPorteDoAnimal,
-        sMedicamentoAnimal,
-        sHorarioMedicamento,
-        sObservacoesDoAnimal;
+                        String sNomeDoAnimal,
+                        sRacaDoAnimal,
+                        sIdadeDoAnimal,
+                        sPorteDoAnimal,
+                        sMedicamentoAnimal,
+                        sHorarioMedicamento,
+                        sObservacoesDoAnimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         edtMedicamentoAnimal = findViewById(R.id.edttext_medicamento_animal);
         edtHorarioMedicamento = findViewById(R.id.edttext_horario_medicamento);
         edtObservacoesAnimal = findViewById(R.id.edttext_observacoes_animal);
-        //Variaveis
+
         String sNomeDoAnimal = edtNomeAnimal.getText().toString();
         String sRacaDoAnimal = edtRacaAnimal.getText().toString();
         String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
@@ -59,7 +60,6 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
         String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
         String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
-
     }
 
     public void onClick(View view) {
@@ -69,16 +69,25 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.floating_btn_cadastrar_animal_tela:
                 saveData(testFields());
+                break;
         }
     }
 
 
     private void saveData(boolean isSuccess) {
-
         // Tudo dentro de um try
         if (isSuccess){
-
-            Toast.makeText(this, "Salvado com sucesso! Parabéns!", Toast.LENGTH_SHORT).show();
+            //Variaveis
+            String sNomeDoAnimal = edtNomeAnimal.getText().toString();
+            String sRacaDoAnimal = edtRacaAnimal.getText().toString();
+            String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
+            String sPorteDoAnimal = edtPorteAnimal.getText().toString();
+            String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
+            String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
+            String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
+            AnimalModel animal = new AnimalModel(sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
+                    sHorarioMedicamento, sObservacoesDoAnimal);
+            animalController.cadastrarAnimal(animal); //Passando os dados para a controler persistir
             hideKeyboardFrom(this, edtObservacoesAnimal);
             limparCampos();
         } else {
@@ -100,6 +109,13 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
 
     public boolean testFields() {
 
+        String sNomeDoAnimal = edtNomeAnimal.getText().toString();
+        String sRacaDoAnimal = edtRacaAnimal.getText().toString();
+        String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
+        String sPorteDoAnimal = edtPorteAnimal.getText().toString();
+        String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
+        String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
+        String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
         if (sNomeDoAnimal.isEmpty() || sRacaDoAnimal.isEmpty() || sIdadeDoAnimal.isEmpty() || sPorteDoAnimal.isEmpty() || sMedicamentoAnimal.isEmpty()|| sHorarioMedicamento.isEmpty() || sObservacoesDoAnimal.isEmpty()) {
             return false;
         }
@@ -110,6 +126,4 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         InputMethodManager imm = (InputMethodManager) context.getSystemService(CadastroAnimal.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-
 }

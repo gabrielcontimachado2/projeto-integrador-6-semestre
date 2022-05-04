@@ -30,12 +30,12 @@ public class AnimalController {
 
     }
 
-    public static void cadastrarAnimal(AnimalModel animal) {
+    public void cadastrarAnimal(AnimalModel animal) {
         //TODO -> Rotina de persistencia dos dados no firebase
         Map<String,Object> objectMap = new HashMap<>(); //mapeamento de objetos
 
         FirebaseDatabase.getInstance().getReference("animal")
-                .child("animal")
+                .child(UUID.randomUUID().toString())
                 .setValue(animal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
