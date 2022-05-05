@@ -13,6 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:layout_marginTop="@dimen/margin_default_large"
         android:id="@+id/image_icon_perfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,12 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/margin_default_minimum"
-        android:text="GABRIEL CONTI MACHADO TESTE"
+        android:text="Gabriel Conti Machado"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/text_email_perfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CONTIGABRIE72@GMAIL.COM" />
+        android:text="contigabriel72@gmail.com" />
 </LinearLayout>

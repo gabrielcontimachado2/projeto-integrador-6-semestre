@@ -21,6 +21,16 @@ public class AnimalModel {
         this.animalObs = animalObs;
     }
 
+    public AnimalModel(String animalName, String animelBreed, String animalAge, String animalSize, String animalMedicine, String animalTimeMedicine, String animalObs) {
+        this.animalName = animalName;
+        this.animelBreed = animelBreed;
+        this.animalAge = animalAge;
+        this.animalSize = animalSize;
+        this.animalMedicine = animalMedicine;
+        this.animalTimeMedicine = animalTimeMedicine;
+        this.animalObs = animalObs;
+    }
+
     public String getAnimalName() {
         return animalName;
     }

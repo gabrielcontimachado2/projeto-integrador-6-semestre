@@ -6,6 +6,15 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!-- Card dimen-->
+    <dimen name="height_size_default_card">75dp</dimen>
+
+    <!-- Elevantion Dimension-->
+    <dimen name="elevantion_default">9dp</dimen>
+
+    <!-- Radius-->
+    <dimen name="radius_default">10dp</dimen>
+
     <!-- Margin dimension -->
     <dimen name="margin_default_micro_micro">8dp</dimen>
     <dimen name="margin_default_micro">10dp</dimen>
@@ -28,5 +37,6 @@
     <dimen name="margin_default_card">5dp</dimen>
     <dimen name="btn_default">240dp</dimen>
     <dimen name="btn_enter">144dp</dimen>
+
 
 </resources>

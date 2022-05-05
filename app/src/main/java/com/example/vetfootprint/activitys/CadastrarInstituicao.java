@@ -36,7 +36,7 @@ public class CadastrarInstituicao extends AppCompatActivity {
             edtCnpjInstituicao,
             edtTelefoneInstituicao,
             edtEnderecoInstituicao;
-    private Boolean operacao;
+
 
 
     @Override
@@ -44,8 +44,7 @@ public class CadastrarInstituicao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_instituicao);
 
-
-
+        //Iniciar b
         onInitView();
     }
 
@@ -97,13 +96,6 @@ public class CadastrarInstituicao extends AppCompatActivity {
             CadastroInstituicaoController cadastroInstituicaoController = new CadastroInstituicaoController();
 
             cadastroInstituicaoController.cadastrarInstituicao(userModel);
-
-
-           if (operacao) {
-               Toast.makeText(this, "Salvado com sucesso! Parabéns!", Toast.LENGTH_SHORT).show();
-               hideKeyboardFrom(this, edtEnderecoInstituicao);
-               limparCampos();
-           }
 
 
         } else {

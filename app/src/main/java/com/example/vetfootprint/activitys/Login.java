@@ -8,15 +8,20 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.CadastroInstituicaoController;
+import com.example.vetfootprint.controller.LoginController;
+import com.example.vetfootprint.model.LoginModel;
+import com.example.vetfootprint.model.UserModel;
 
 public class Login extends AppCompatActivity {
 
     private EditText edtLogin, edtSenha;
     private Button btnEnter, btnRegister;
+    Boolean operacao;
 
 
 
@@ -27,7 +32,6 @@ public class Login extends AppCompatActivity {
 
         onInitView();
 
-
     }
 
     private void onInitView() {
@@ -35,14 +39,12 @@ public class Login extends AppCompatActivity {
         edtSenha = findViewById(R.id.edittext_user_password);
         btnEnter =  findViewById(R.id.btn_enter);
         btnRegister = findViewById(R.id.btn_register_institution);
-
-
     }
 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_enter:
-                autenticacao();
+                autenticacao(testFields());
                 break;
             case R.id.btn_register_institution:
                 registerInstitution();
@@ -56,10 +58,47 @@ public class Login extends AppCompatActivity {
         finish();
     }
 
-    public void autenticacao(){
-        Intent intent = new Intent(Login.this, MainActivity.class);
+    public void autenticacao(Boolean testeFields){
+
+        if (testeFields) {
+            String sEmail    = edtLogin.getText().toString();
+            String sPassword = edtSenha.getText().toString();
+
+            LoginModel loginModel = new LoginModel(sEmail, sPassword);
+
+            LoginController loginController = new LoginController();
+
+            operacao = loginController.singInUser(loginModel);
+
+            if(operacao){
+                login();
+            }
+            else{
+                Toast.makeText(this, "Mandamos um email de verificação para ativar sua conta, após verificar tente novamente", Toast.LENGTH_SHORT).show();
+            }
+
+
+        } else {
+            // Deu merda, retorna uma exceção
+            Toast.makeText(this, "Não foi possível prosseguir, verifique os campos de dados e tente novamente.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void login() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
+    public boolean testFields() {
+        String sEmail    = edtLogin.getText().toString();
+        String sPassword = edtSenha.getText().toString();
+
+
+        if (sEmail.isEmpty() || sPassword.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
 }

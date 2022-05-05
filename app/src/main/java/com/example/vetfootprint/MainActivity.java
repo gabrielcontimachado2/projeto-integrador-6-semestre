@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_sair:
-                loggoutUser();
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -95,8 +95,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loggoutUser(){
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        mAuth.signOut();
-    }
+
 }

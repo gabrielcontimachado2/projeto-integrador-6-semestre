@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CadastroInstituicaoController {
 
-    private CadastrarInstituicao cadastrarInstituicao;
     public static Boolean operacao;
 
     private FirebaseAuth mAuth;
@@ -34,7 +33,7 @@ public class CadastroInstituicaoController {
 
     public void cadastrarInstituicao(@NonNull UserModel userModel) {
 
-        Log.d("myTag", "This is my message" + " "+ userModel.getUserEmailInstituion());
+        Log.d("myTag", "entrei na função " + " "+ userModel.getUserEmailInstituion());
 
         mAuth.createUserWithEmailAndPassword(userModel.getUserEmailInstituion(), userModel.getUserPasswordIstitution())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
