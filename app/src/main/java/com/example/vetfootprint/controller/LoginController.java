@@ -1,5 +1,8 @@
 package com.example.vetfootprint.controller;
 
+import android.text.BoringLayout;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.example.vetfootprint.activitys.Login;
@@ -21,7 +24,7 @@ public class LoginController {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public boolean singInUser(LoginModel loginModel) {
+    public Boolean singInUser(LoginModel loginModel, Login login) {
 
         mAuth.signInWithEmailAndPassword(loginModel.getsEmail(), loginModel.getsPassword())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -33,11 +36,17 @@ public class LoginController {
 
                             if(user.isEmailVerified()){
                                operacao = true;
+
+                                Toast.makeText(login, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show();
                             }
-                            else{
+                            else if(!user.isEmailVerified()){
                                 user.sendEmailVerification();
+                                Toast.makeText(login, "Verifique seu e-mail para ter acesso a conta", Toast.LENGTH_SHORT).show();
                                 operacao = false;
                             }
+                        }
+                        else {
+                            Toast.makeText(login, "Erro na autenticação tente novamente", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

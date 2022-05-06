@@ -68,13 +68,10 @@ public class Login extends AppCompatActivity {
 
             LoginController loginController = new LoginController();
 
-            operacao = loginController.singInUser(loginModel);
+            operacao = loginController.singInUser(loginModel, this);
 
-            if(operacao){
+            if(operacao ==  true){
                 login();
-            }
-            else{
-                Toast.makeText(this, "Mandamos um email de verificação para ativar sua conta, após verificar tente novamente", Toast.LENGTH_SHORT).show();
             }
 
 

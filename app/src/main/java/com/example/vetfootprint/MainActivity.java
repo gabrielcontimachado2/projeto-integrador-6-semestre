@@ -2,6 +2,7 @@ package com.example.vetfootprint;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
     public void testUser(){
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
+        if (currentUser == null) {
+            Log.d("myTag", "dentro do teste usuario null");
             Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
             finish();

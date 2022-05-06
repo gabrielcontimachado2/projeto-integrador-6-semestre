@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.activitys.CadastrarInstituicao;
+import com.example.vetfootprint.activitys.CadastroAnimal;
 import com.example.vetfootprint.activitys.Login;
 import com.example.vetfootprint.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,9 +32,8 @@ public class CadastroInstituicaoController {
         currentUser = mAuth.getCurrentUser();
     }
 
-    public void cadastrarInstituicao(@NonNull UserModel userModel) {
+    public void cadastrarInstituicao(@NonNull UserModel userModel, CadastrarInstituicao cadastrarInstituicao){
 
-        Log.d("myTag", "entrei na função " + " "+ userModel.getUserEmailInstituion());
 
         mAuth.createUserWithEmailAndPassword(userModel.getUserEmailInstituion(), userModel.getUserPasswordIstitution())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -48,11 +48,10 @@ public class CadastroInstituicaoController {
                                public void onComplete(@NonNull Task<Void> task) {
 
                                    if (task.isSuccessful()){
-                                       operacao = true;
-                                       /*TODO transformar operação para string com mensagem do toast*/
+                                       Toast.makeText(cadastrarInstituicao, "Sua instituição foi cadastrada com sucesso", Toast.LENGTH_SHORT).show();
                                    }
                                    else{
-                                       operacao = false;
+                                       Toast.makeText(cadastrarInstituicao, "Não foi possivel realizar seu cadastro tente novamente", Toast.LENGTH_SHORT).show();
                                    }
                                }
                            });

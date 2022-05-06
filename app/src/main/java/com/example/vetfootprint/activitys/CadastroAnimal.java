@@ -79,7 +79,7 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         if (isSuccess){
             //Variaveis
             String sNomeDoAnimal = edtNomeAnimal.getText().toString();
-            String sRacaDoAnimal = edtRacaAnimal.getText().toString();
+            String sRacaDoAnimal = edtRacaAnimal.  getText().toString();
             String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
             String sPorteDoAnimal = edtPorteAnimal.getText().toString();
             String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();

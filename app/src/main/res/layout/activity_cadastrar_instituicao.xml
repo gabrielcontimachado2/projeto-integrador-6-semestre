@@ -62,7 +62,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_nome_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,7 +78,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_email_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +94,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_senha_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +110,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_confirma_senha_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -122,7 +126,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_cnpj_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -137,7 +142,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_telefone_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -152,7 +158,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_endereco_instituicao"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

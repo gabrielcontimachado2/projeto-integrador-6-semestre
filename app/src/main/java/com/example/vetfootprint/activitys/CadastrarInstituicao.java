@@ -36,7 +36,7 @@ public class CadastrarInstituicao extends AppCompatActivity {
             edtCnpjInstituicao,
             edtTelefoneInstituicao,
             edtEnderecoInstituicao;
-
+    public Boolean operacao = null;
 
 
     @Override
@@ -81,21 +81,19 @@ public class CadastrarInstituicao extends AppCompatActivity {
     private void saveData(boolean isSuccess) {
         // Tudo dentro de um try
         if (isSuccess) {
-            String sName     = edtNomeInstituicao.getText().toString();
-            String sEmail    = edtEmailInstituicao.getText().toString();
+            String sName = edtNomeInstituicao.getText().toString();
+            String sEmail = edtEmailInstituicao.getText().toString();
             String sPassword = edtSenhaInstituicao.getText().toString();
-            String sCnpj     = edtCnpjInstituicao.getText().toString();
-            String sPhone    = edtTelefoneInstituicao.getText().toString();
-            String sAddress  = edtEnderecoInstituicao.getText().toString();
-            String sRole     = "admin";
+            String sCnpj = edtCnpjInstituicao.getText().toString();
+            String sPhone = edtTelefoneInstituicao.getText().toString();
+            String sAddress = edtEnderecoInstituicao.getText().toString();
+            String sRole = "admin";
 
             UserModel userModel = new UserModel(sName, sEmail, sPassword, sCnpj, sPhone, sAddress, sRole);
 
-            Log.d("myTag", "This is my message" + userModel);
-
             CadastroInstituicaoController cadastroInstituicaoController = new CadastroInstituicaoController();
 
-            cadastroInstituicaoController.cadastrarInstituicao(userModel);
+            cadastroInstituicaoController.cadastrarInstituicao(userModel, CadastrarInstituicao.this);
 
 
         } else {
