@@ -61,7 +61,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_animal_name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +77,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_raca_animal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +93,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_idade_animal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -106,7 +109,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_porte_animal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -121,7 +125,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_medicamento_animal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +141,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_horario_medicamento"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="date"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -151,7 +157,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_observacoes_animal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textLongMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

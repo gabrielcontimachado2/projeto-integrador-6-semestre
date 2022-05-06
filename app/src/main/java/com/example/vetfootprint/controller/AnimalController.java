@@ -1,5 +1,7 @@
 package com.example.vetfootprint.controller;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.example.vetfootprint.activitys.CadastroAnimal;
@@ -31,7 +33,7 @@ public class AnimalController {
 
     }
 
-    public void cadastrarAnimal(AnimalModel animal) {
+    public void cadastrarAnimal(AnimalModel animal, CadastroAnimal cadastroAnimal) {
         //TODO -> Rotina de persistencia dos dados no firebase
         Map<String,Object> objectMap = new HashMap<>(); //mapeamento de objetos
 
@@ -43,10 +45,9 @@ public class AnimalController {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
-                    operacao = true;
-                    /*TODO transformar operação para string com mensagem do toast*/
+                    Toast.makeText(cadastroAnimal, "Animal foi cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
                 } else {
-                    operacao = false;
+                    Toast.makeText(cadastroAnimal, "Não foi possivel realizar o cadastro tente novamente!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

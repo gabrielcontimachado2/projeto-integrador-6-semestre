@@ -87,7 +87,7 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
             String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
             AnimalModel animal = new AnimalModel(sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
                     sHorarioMedicamento, sObservacoesDoAnimal);
-            animalController.cadastrarAnimal(animal); //Passando os dados para a controler persistir
+            animalController.cadastrarAnimal(animal, CadastroAnimal.this); //Passando os dados para a controler persistir
             hideKeyboardFrom(this, edtObservacoesAnimal);
             limparCampos();
         } else {
