@@ -39,6 +39,7 @@ public class AnimalController {
 
     }
 
+
     /*Metodos que precisam realizar operações
     de recuperação de dados
     */
@@ -51,7 +52,7 @@ public class AnimalController {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                AnimalModel animalModel =  snapshot.getValue(AnimalModel.class);
+                AnimalModel animalModel = snapshot.getValue(AnimalModel.class);
 
                 perfilAnimal.animalName.setText(animalModel.getAnimalName());
                 perfilAnimal.animalBreed.setText(animalModel.getAnimelBreed());
@@ -62,7 +63,7 @@ public class AnimalController {
                 perfilAnimal.animalObs.setText(animalModel.getAnimalObs());
                 String sUrlImage = animalModel.getUrlImageDog();
 
-                Glide.with(perfilAnimal.imageView.getContext()).load(sUrlImage).into(perfilAnimal.imageView);
+                Glide.with(perfilAnimal.animalImageView.getContext()).load(sUrlImage).into(perfilAnimal.animalImageView);
 
 
                 //String sAnimalName = snapshot.child("animalName").getValue().toString();
@@ -91,7 +92,7 @@ public class AnimalController {
 
         //Referenciar em qual nó vai ser salvo, baseado no id do animal
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
-        StorageReference referenceImage = storageReference.child("animal/"+idAnimal);
+        StorageReference referenceImage = storageReference.child("animal/" + idAnimal);
 
         //Salvar imagem no Storage do firebase
         referenceImage.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -129,6 +130,63 @@ public class AnimalController {
         });
 
     }
+
+    /*Metodos que precisam realizar operações
+    de editar o animal
+    */
+    public void editarAnimal(String idAnimal, String sNomeDoAnimal, String sRacaDoAnimal, String sIdadeDoAnimal, String sPorteDoAnimal, String sMedicamentoAnimal, String sHorarioMedicamento,
+                             String sObservacoesDoAnimal, PerfilAnimal perfilAnimal, Uri imageUri) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference().child("animal").child(idAnimal);
+
+        //Referenciar em qual nó vai ser salvo, baseado no id do animal
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
+        StorageReference referenceImage = storageReference.child("animal/" + idAnimal);
+
+        //Salvar imagem no Storage do firebase
+        referenceImage.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                referenceImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        //String para url do animal
+                        String urlImageDog = uri.toString();
+
+                        //Instancia um hash map
+                        HashMap animalMap = new HashMap();
+                        animalMap.put("animalName", sNomeDoAnimal);
+                        animalMap.put("animalBreed", sRacaDoAnimal);
+                        animalMap.put("animalAge", sIdadeDoAnimal);
+                        animalMap.put("animalSize", sPorteDoAnimal);
+                        animalMap.put("animalMedicine", sMedicamentoAnimal);
+                        animalMap.put("animalTimeMedicine", sHorarioMedicamento);
+                        animalMap.put("animalObs", sObservacoesDoAnimal);
+                        animalMap.put("urlImageDog", urlImageDog);
+
+
+
+                        ref.updateChildren(animalMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(perfilAnimal, "Animal foi atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(perfilAnimal, "Não foi possivel foi atualizado o animal, tente novamente"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
+    }
+
 
 }
 

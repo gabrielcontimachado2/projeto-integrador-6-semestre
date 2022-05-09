@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_size_default_card"
         android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_default_micro"
+        android:layout_marginTop="@dimen/margin_default_minimum"
         android:layout_marginEnd="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default_micro"
         android:backgroundTint="@color/azul_card"
         app:cardCornerRadius="@dimen/radius_default"
         app:cardElevation="@dimen/elevantion_default">

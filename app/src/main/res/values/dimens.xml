@@ -10,7 +10,7 @@
     <dimen name="height_size_default_card">90dp</dimen>
 
     <!-- Elevantion Dimension-->
-    <dimen name="elevantion_default">9dp</dimen>
+    <dimen name="elevantion_default">5dp</dimen>
 
     <!-- Radius-->
     <dimen name="radius_default">10dp</dimen>
