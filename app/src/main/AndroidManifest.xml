@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VetFootPrint">
         <activity
+            android:name=".activitys.PerfilAnimal"
+            android:exported="false" />
+        <activity
             android:name=".activitys.PerfilInstituicao"
             android:exported="false" />
         <activity

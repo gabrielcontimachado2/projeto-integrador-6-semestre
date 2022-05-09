@@ -11,7 +11,13 @@
     <!-- Paleta_de_cores!-->
     <color name="rosa">#D81E5B</color>
     <color name="azul_card">#E7EDF3</color>
+    <color name="vermelho_delete_card">#EC5656</color>
     <color name="azul_button_action">#027BCE</color>
-    <color name="azul_principal">#1542C8</color>
+    <color name="azul_principal">#05AFF2</color>
     <color name="azul_destaque_black">#0C329F</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

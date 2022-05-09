@@ -7,7 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Card dimen-->
-    <dimen name="height_size_default_card">75dp</dimen>
+    <dimen name="height_size_default_card">90dp</dimen>
 
     <!-- Elevantion Dimension-->
     <dimen name="elevantion_default">9dp</dimen>
@@ -27,6 +27,7 @@
 
     <!-- Text Size -->
     <dimen name="text_size_minimum">10sp</dimen>
+    <dimen name="text_card_view_perfil">12sp</dimen>
     <dimen name="text_size_little">11sp</dimen>
     <dimen name="text_size_hint">14sp</dimen>
     <dimen name="text_size_card_dog_task">16sp</dimen>
@@ -37,6 +38,16 @@
     <dimen name="margin_default_card">5dp</dimen>
     <dimen name="btn_default">240dp</dimen>
     <dimen name="btn_enter">144dp</dimen>
+    <dimen name="image_width">140dp</dimen>
+    <dimen name="image_height">188dp</dimen>
+    <dimen name="margin_top_card">16dp</dimen>
+    <dimen name="image_view_height_card">48dp</dimen>
+    <dimen name="margin_top_textview_card">24dp</dimen>
+    <dimen name="margin_top_edittext_card">20dp</dimen>
+    <dimen name="margin_start_textview_card">12dp</dimen>
+    <dimen name="margin_start_textview_two_card">27dp</dimen>
+    <dimen name="margin_top_textview_two_card">4dp</dimen>
+    <dimen name="margin_bottom_floating">30dp</dimen>
 
 
 </resources>

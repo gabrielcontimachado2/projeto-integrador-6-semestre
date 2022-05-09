@@ -1,93 +1,84 @@
 package com.example.vetfootprint.fragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.Button;
-import android.widget.TextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.activitys.CadastroAnimal;
-import com.example.vetfootprint.activitys.Login;
+import com.example.vetfootprint.controller.adapterCardDog;
+import com.example.vetfootprint.model.modelRecyclerView;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Objects;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Home extends Fragment  {
 
-    private HomeViewModel mViewModel;
-    private FloatingActionButton floatingBtnAdicionarAnimal;
-    private Button btnLogout;
-    TextView txtView;
+    adapterCardDog adapterCardDog;
+    DatabaseReference mBase;
 
-
-    public static Home newInstance() {
-        return new Home();
-    }
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        mBase = FirebaseDatabase.getInstance().getReference().child("animal");
 
-        floatingBtnAdicionarAnimal = view.findViewById(R.id.floating_btn_add_dog_home_fragment);
+        FloatingActionButton floatingBtnAdicionarAnimal = view.findViewById(R.id.floating_btn_add_dog_home_fragment);
+        RecyclerView recyclerViewAnimal = view.findViewById(R.id.recyclerviewAnimal);
 
-        btnLogout = view.findViewById(R.id.logout);
-        txtView = view.findViewById(R.id.txt_email_teste_home);
-
-
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loggoutUser();
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
-
-            }
-        });
+        recyclerViewAnimal.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        floatingBtnAdicionarAnimal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CadastroAnimal.class);
-                startActivity(intent);
-                String sEmail = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
+        FirebaseRecyclerOptions<modelRecyclerView> options =
+                new FirebaseRecyclerOptions.Builder<modelRecyclerView>()
+                        .setQuery(mBase, modelRecyclerView.class)
+                        .build();
 
-                txtView.setText(sEmail);
-            }
+
+        adapterCardDog = new adapterCardDog(options, getContext());
+        recyclerViewAnimal.setAdapter(adapterCardDog);
+        recyclerViewAnimal.setItemAnimator(null);
+
+
+
+
+        floatingBtnAdicionarAnimal.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), CadastroAnimal.class);
+            startActivity(intent);
         });
 
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        // TODO: Use the ViewModel
+    public void onStart() {
+        super.onStart();
+        adapterCardDog.startListening();
     }
 
-    public void loggoutUser(){
-        FirebaseAuth.getInstance().signOut();
-       //FirebaseAuth mAuth;
-       //mAuth = FirebaseAuth.getInstance();
-       //FirebaseUser currentUser = mAuth.getCurrentUser();
-       //mAuth.signOut();
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapterCardDog.stopListening();
     }
+
+
+
+
 }

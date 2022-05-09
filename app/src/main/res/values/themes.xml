@@ -22,4 +22,15 @@
     <style name="Theme.VetFootPrint.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.VetFootPrint.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="radiusImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.VetFootPrint.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>

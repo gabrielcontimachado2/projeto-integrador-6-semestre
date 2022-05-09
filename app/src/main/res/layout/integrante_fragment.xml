@@ -19,6 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:background="@drawable/ic_img_register_button"
+                android:onClick="onClick"
+                android:padding="@dimen/margin_default_micro"
+                android:text="logout"
+                android:textColor="@color/white" />
         </ScrollView>
     </LinearLayout>
 

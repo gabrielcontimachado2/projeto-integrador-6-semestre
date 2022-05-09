@@ -30,7 +30,7 @@
     <string name="observacoes_animal">Digite observações sobre o animal</string>
     <!-- buttons tela cadastro animal -->
     <string name="btn_historico_vacinacao">Histórico Vacinação</string>
-    <string name="btn_foto_animal">Foto do animal</string>
+    <string name="btn_foto_animal">Salvar imagem do animal</string>
 
 
     <!-- Tela cadastro instituicao-->
@@ -60,12 +60,23 @@
     <string name="btn_documento_integrante">Documentos</string>
     <string name="btn_fotos_integrante">Foto Integrante</string>
 
+    <!-- Card perfil do animal-->
+    <string name="name_animal_card">Nome do animal</string>
+    <string name="raca_animal_card">Raça do animal</string>
+    <string name="idade_animal_card">Idade do animal</string>
+    <string name="porte_animal_card">Porte do animal</string>
+    <string name="medicamento_animal_card">Medicamentos do animal</string>
+    <string name="horarios_medicamento_animal_card">Horários dos medicamentos do animal</string>
+    <string name="observacoes_animal_card">Observações sobre o animal</string>
+
 
     <!-- buttons -->
     <string name="btn_register_institution">Cadastrar Instituição</string>
     <string name="btn_enter">Entrar</string>
     <string name="menu_busca">buscar</string>
     <string name="menu_sair">Sair</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

@@ -7,16 +7,24 @@
         <entry key="..\:/Users/Leo/AndroidStudioProjects/PI6/projeto_integrador_6_semestre/app/src/main/res/layout/activity_main.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/Leo/AndroidStudioProjects/PI6/projeto_integrador_6_semestre/app/src/main/res/layout/activity_perfil_instituicao.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/Leo/AndroidStudioProjects/PI6/projeto_integrador_6_semestre/app/src/main/res/layout/home_fragment.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/drawable/ic_back_button_actvity.xml" value="0.2375" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/drawable/ic_back_edit_floating.xml" value="0.3525" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/drawable/ic_edit_floating.xml" value="0.3525" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/drawable/ic_img_register_button.xml" value="0.3525" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/drawable/ic_trash.xml" value="0.263" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_cadastrar_instituicao.xml" value="0.33" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_cadastro_animal.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_cadastro_integrante.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_main.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_perfil_animal.xml" value="0.5" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/activity_perfil_instituicao.xml" value="0.2381359555365541" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/app_bar_main.xml" value="0.20179563916203505" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/card_cachorro.xml" value="0.67" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/card_integrante.xml" value="0.5" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/content_main.xml" value="0.20179563916203505" />
-        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/home_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/fragment_fullscreen.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/home_fragment.xml" value="0.2381359555365541" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/integrante_fragment.xml" value="0.28815733219324496" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/layout/nav_header_main.xml" value="0.20179563916203505" />
         <entry key="..\:/Users/rowi/Desktop/clone2/app/src/main/res/menu/activity_main_drawer.xml" value="0.24114583333333334" />

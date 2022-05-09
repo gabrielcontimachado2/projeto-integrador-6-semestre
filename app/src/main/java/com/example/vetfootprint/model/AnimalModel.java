@@ -1,5 +1,7 @@
 package com.example.vetfootprint.model;
 
+import android.net.Uri;
+
 public class AnimalModel {
     String animalName = "";
     String animelBreed = "";
@@ -8,10 +10,14 @@ public class AnimalModel {
     String animalMedicine = "";
     String animalTimeMedicine = "";
     String animalObs = "";
+    String urlImageDog = "";
+    String idAnimal = "";
+
+
     public AnimalModel(){
 
     }
-    public AnimalModel(String animalName, String animelBreed, String animalAge, String animalSize, String animalMedicine, String animalTimeMedicine, String animalObs) {
+    public AnimalModel(String idAnimal,String animalName, String animelBreed, String animalAge, String animalSize, String animalMedicine, String animalTimeMedicine, String animalObs, String urlImageDog) {
         this.animalName = animalName;
         this.animelBreed = animelBreed;
         this.animalAge = animalAge;
@@ -19,8 +25,25 @@ public class AnimalModel {
         this.animalMedicine = animalMedicine;
         this.animalTimeMedicine = animalTimeMedicine;
         this.animalObs = animalObs;
+        this.urlImageDog = urlImageDog;
+        this.idAnimal = idAnimal;
     }
 
+    public String getIdAnimal() {
+        return idAnimal;
+    }
+
+    public void setIdAnimal(String idAnimal) {
+        this.idAnimal = idAnimal;
+    }
+
+    public String getUrlImageDog() {
+        return urlImageDog;
+    }
+
+    public void setUrlImageDog(String urlImageDog) {
+        this.urlImageDog = urlImageDog;
+    }
 
     public String getAnimalName() {
         return animalName;

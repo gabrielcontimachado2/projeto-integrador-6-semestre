@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_dog"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_size_default_card"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default_micro"
         android:layout_marginEnd="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/margin_card"
+        android:layout_marginBottom="@dimen/margin_default"
         android:backgroundTint="@color/azul_card"
         app:cardCornerRadius="@dimen/radius_default"
         app:cardElevation="@dimen/elevantion_default">
@@ -22,9 +23,9 @@
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_dog_photo"
+                android:id="@+id/card_image_dog_photo"
                 android:layout_width="50dp"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="@dimen/margin_default_micro"
                 android:layout_marginTop="@dimen/margin_default_micro"
                 android:layout_marginBottom="@dimen/margin_default_micro"
@@ -34,29 +35,30 @@
                 tools:src="@drawable/transferirtess" />
 
             <TextView
-                android:id="@+id/text_nome_do_cachorro_card"
+                android:id="@+id/card_text_nome_do_cachorro_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default_micro"
                 android:fontFamily="@font/roboto_medium"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/image_dog_photo"
-                app:layout_constraintTop_toTopOf="@id/image_dog_photo"
+                app:layout_constraintStart_toEndOf="@id/card_image_dog_photo"
+                app:layout_constraintTop_toTopOf="@id/card_image_dog_photo"
                 tools:text="Cachorro 1" />
 
             <TextView
-                android:id="@+id/text_idade_do_cachorro_card"
+                android:id="@+id/card_text_idade_do_cachorro_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default_card"
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:textSize="@dimen/text_size_little"
-                app:layout_constraintStart_toStartOf="@+id/text_nome_do_cachorro_card"
-                app:layout_constraintTop_toBottomOf="@+id/text_nome_do_cachorro_card"
+                app:layout_constraintStart_toStartOf="@+id/card_text_nome_do_cachorro_card"
+                app:layout_constraintTop_toBottomOf="@+id/card_text_nome_do_cachorro_card"
                 tools:text="6 anos" />
 
+
             <ImageButton
-                android:id="@+id/image_button_excluir_card_cachorro"
+                android:id="@+id/card_image_button_excluir_card_cachorro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default_micro"
