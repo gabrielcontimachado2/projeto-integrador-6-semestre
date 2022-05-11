@@ -3,6 +3,7 @@ package com.example.vetfootprint.activitys;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -19,6 +20,12 @@ import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.AnimalController;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.vicmikhailau.maskededittext.MaskedEditText;
+
+import java.util.Objects;
 
 public class PerfilAnimal extends AppCompatActivity {
 
@@ -26,7 +33,8 @@ public class PerfilAnimal extends AppCompatActivity {
     public ImageView backButton;
     public String name = "";
     public FloatingActionButton floatingEditMode, floatingBackNormalMode, floatingSaveEdit;
-    public EditText animalName,animalBreed,animalAge, animalSize,animalMedicine, animalMedicineTime, animalObs;
+    public EditText animalName, animalBreed, animalAge, animalSize, animalMedicine, animalObs;
+    public MaskedEditText  animalMedicineTime;
     public ImageView animalImageView;
     private Uri imageUri;
     private Boolean isSuccess = true;
@@ -62,7 +70,6 @@ public class PerfilAnimal extends AppCompatActivity {
         animalMedicineTime = findViewById(R.id.edt_horario_medicamento_animal_card);
         animalObs = findViewById(R.id.edt_observacoes_animal_card);
 
-
     }
 
     public void onClick(View view) {
@@ -86,7 +93,7 @@ public class PerfilAnimal extends AppCompatActivity {
     }
 
     private void saveEdit() {
-        if (isSuccess){
+        if (isSuccess) {
             //Variaveis
             String sNomeDoAnimal = animalName.getText().toString();
             String sRacaDoAnimal = animalBreed.getText().toString();
@@ -96,9 +103,10 @@ public class PerfilAnimal extends AppCompatActivity {
             String sHorarioMedicamento = animalMedicineTime.getText().toString();
             String sObservacoesDoAnimal = animalObs.getText().toString();
 
+
             //Passando os dados para a controler persistir no banco de dados
-            animalController.editarAnimal(getIntent().getStringExtra("idAnimal"),sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
-                    sHorarioMedicamento, sObservacoesDoAnimal, PerfilAnimal.this, imageUri);
+            animalController.editarAnimal(getIntent().getStringExtra("idAnimal"), sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
+                    sHorarioMedicamento, sObservacoesDoAnimal, PerfilAnimal.this);
 
         } else {
             // Deu merda, retorna uma exceção
@@ -108,6 +116,14 @@ public class PerfilAnimal extends AppCompatActivity {
 
 
     private void backNormalMode() {
+        animalName.setEnabled(false);
+        animalAge.setEnabled(false);
+        animalBreed.setEnabled(false);
+        animalSize.setEnabled(false);
+        animalMedicine.setEnabled(false);
+        animalMedicineTime.setEnabled(false);
+        animalObs.setEnabled(false);
+
         floatingEditMode.setVisibility(View.VISIBLE);
         floatingSaveEdit.setClickable(false);
         floatingSaveEdit.setVisibility(View.INVISIBLE);
@@ -117,9 +133,10 @@ public class PerfilAnimal extends AppCompatActivity {
 
     private void editMode() {
 
-
+        animalName.setEnabled(true);
         animalAge.setEnabled(true);
         animalSize.setEnabled(true);
+        animalBreed.setEnabled(true);
         animalMedicine.setEnabled(true);
         animalMedicineTime.setEnabled(true);
         animalObs.setEnabled(true);
@@ -138,7 +155,7 @@ public class PerfilAnimal extends AppCompatActivity {
         finish();
     }
 
-    public void abrirGaleria(){
+    public void abrirGaleria() {
         Intent intentGallery = new Intent();
         intentGallery.setAction(Intent.ACTION_GET_CONTENT);
         intentGallery.setType("image/*");
@@ -146,14 +163,31 @@ public class PerfilAnimal extends AppCompatActivity {
 
     }
 
+    public void editarFoto() {
+        animalController.editarFotoAnimal(PerfilAnimal.this, getIntent().getStringExtra("idAnimal"), imageUri);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 2 && resultCode == RESULT_OK && data !=null){
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
 
             imageUri = data.getData();
             animalImageView.setImageURI(imageUri);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(PerfilAnimal.this.animalImageView.getContext());
+            builder.setTitle("Atualizar imagem");
+            builder.setMessage("Você tem certeza que atualizar sua imagem?");
+
+            builder.setPositiveButton("SIM", (dialogInterface, i) -> {
+                editarFoto();
+            });
+            builder.setNegativeButton("NÃO", (dialogInterface, i) -> {
+
+            });
+            builder.show();
 
         }
     }

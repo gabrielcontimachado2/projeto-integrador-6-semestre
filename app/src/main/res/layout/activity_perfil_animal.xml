@@ -24,10 +24,10 @@
                 android:id="@+id/card_back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/image_view_height_card"
-                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default_micro"
                 android:clickable="true"
                 android:onClick="onClick"
-                android:src="@drawable/ic_back_button_actvity"
+                android:src="@drawable/ic_back_button_activity"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -62,8 +62,10 @@
                     android:layout_height="@dimen/image_height"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default_large"
-                    android:src="@color/azul_principal"
                     android:onClick="onClick"
+                    android:saveEnabled="false"
+                    android:clickable="false"
+                    android:src="@color/azul_principal"
                     app:layout_constraintBottom_toTopOf="@id/textview_porte_animal_card_perfil"
                     app:layout_constraintEnd_toStartOf="@id/edttext_raca_animal_card_perfil"
                     app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +94,7 @@
                     android:layout_marginTop="@dimen/margin_top_card"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
                     app:layout_constraintTop_toTopOf="@id/image_view_card_photo_animal" />
@@ -117,6 +120,7 @@
                     android:layout_marginTop="@dimen/margin_top_edittext_card"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
                     app:layout_constraintTop_toBottomOf="@id/edittext_name_animal_card_perfil" />
@@ -141,6 +145,7 @@
                     android:layout_marginTop="@dimen/margin_top_edittext_card"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
                     app:layout_constraintTop_toBottomOf="@id/edttext_raca_animal_card_perfil" />
@@ -166,6 +171,7 @@
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textview_porte_animal_card_perfil" />
@@ -192,6 +198,7 @@
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:drawableTint="@color/black"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_medicamento_animal_card_perfil" />
@@ -210,15 +217,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edt_medicamento_animal_card_perfil" />
 
-                <EditText
+                <com.vicmikhailau.maskededittext.MaskedEditText
                     android:id="@+id/edt_horario_medicamento_animal_card"
+                    app:mask="##:## ##:## ##:##"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
-
                     android:layout_marginEnd="@dimen/margin_default"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
-                    android:clickable="false"
+                    android:enabled="false"
                     android:drawableTint="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -246,6 +253,7 @@
                     android:layout_marginBottom="@dimen/margin_default_large"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:drawableTint="@color/black"
+                    android:enabled="false"
                     android:inputType="textLongMessage"
                     app:layout_constraintBottom_toTopOf="@+id/floating_edt_perfil_animal_card"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -278,7 +286,6 @@
                     android:clickable="false"
                     android:onClick="onClick"
                     android:src="@drawable/ic_edit_floating"
-                    android:tint="@color/purple_200"
                     android:visibility="invisible"
                     app:borderWidth="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"

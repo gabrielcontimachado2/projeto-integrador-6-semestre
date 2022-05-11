@@ -138,11 +138,13 @@
                     android:layout_marginEnd="@dimen/margin_lateral"
                     android:hint="@string/horario_medicamento">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/edttext_horario_medicamento"
+                        app:mask="##:## ##:## ##:##"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="date" />
+                        android:inputType="datetime" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -176,21 +178,9 @@
                     android:layout_width="@dimen/image_width"
                     android:layout_height="@dimen/image_height"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:src="@drawable/ic_add_image"
-                    android:onClick="onClick"/>
-
-
-                <Button
-                    android:id="@+id/btn_add_historico_vacinacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_default"
                     android:layout_marginBottom="@dimen/margin_default"
-                    android:background="@drawable/ic_img_register_button"
-                    android:padding="@dimen/margin_default_micro"
-                    android:text="@string/btn_historico_vacinacao"
-                    android:textColor="@color/white" />
-
+                    android:src="@drawable/ic_add_image"
+                    android:onClick="onClick" />
 
             </LinearLayout>
 
@@ -201,11 +191,12 @@
         android:id="@+id/floating_btn_cadastrar_animal_tela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_default_minimum"
-        android:layout_marginBottom="@dimen/margin_default_minimum"
-        android:backgroundTint="@color/azul_principal"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default_large"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
         android:src="@drawable/ic_img_check_button"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="36dp" />

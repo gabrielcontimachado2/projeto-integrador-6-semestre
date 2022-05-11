@@ -19,6 +19,7 @@ import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.AnimalController;
 import com.example.vetfootprint.model.AnimalModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.vicmikhailau.maskededittext.MaskedEditText;
 
 public class CadastroAnimal extends AppCompatActivity implements View.OnClickListener {
     private AnimalController animalController = new AnimalController();//Instancia da controller no listenner
@@ -31,15 +32,15 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
                      edtIdadeAnimal,
                      edtPorteAnimal,
                      edtMedicamentoAnimal,
-                     edtHorarioMedicamento,
                      edtObservacoesAnimal;
-                        String sNomeDoAnimal,
-                        sRacaDoAnimal,
-                        sIdadeDoAnimal,
-                        sPorteDoAnimal,
-                        sMedicamentoAnimal,
-                        sHorarioMedicamento,
-                        sObservacoesDoAnimal;
+    private MaskedEditText edtHorarioMedicamento;
+    String sNomeDoAnimal,
+           sRacaDoAnimal,
+           sIdadeDoAnimal,
+           sPorteDoAnimal,
+           sMedicamentoAnimal,
+           sHorarioMedicamento,
+           sObservacoesDoAnimal;
 
 
     @Override

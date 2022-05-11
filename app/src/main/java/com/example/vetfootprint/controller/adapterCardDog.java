@@ -21,6 +21,8 @@ import com.example.vetfootprint.model.modelRecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -36,8 +38,8 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
 
     @Override
     protected void onBindViewHolder(@NonNull myviewhodler holder, int position, @NonNull modelRecyclerView model) {
-        holder.sDogName.setText(model.getAnimalName());
-        holder.sDogAge.setText(model.getAnimalAge());
+        holder.sDogName.setText("Nome : " + model.getAnimalName());
+        holder.sDogAge.setText(model.getAnimalAge() + " anos");
         Glide.with(holder.imageDog.getContext()).load(model.getUrlImageDog()).into(holder.imageDog);
 
 
@@ -47,8 +49,19 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
             builder.setTitle("Deletar Cachorro");
             builder.setMessage("Você tem certeza que deseja deletar o animal?");
 
-            builder.setPositiveButton("SIM", (dialogInterface, i) -> FirebaseDatabase.getInstance().getReference().child("animal")
-                    .child(Objects.requireNonNull(getRef(position).getKey())).removeValue());
+            builder.setPositiveButton("SIM", (dialogInterface, i) -> {
+                FirebaseDatabase.getInstance().getReference().child("animal")
+                        .child(Objects.requireNonNull(getRef(position).getKey())).removeValue();
+
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
+                StorageReference referenceImage = storageReference.child("animal/" + model.getIdAnimal());
+
+                referenceImage.delete();
+            });
+
+
+
+
 
             builder.setNegativeButton("NÃO", (dialogInterface, i) -> {
 

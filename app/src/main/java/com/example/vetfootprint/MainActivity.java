@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toolbar;
 
 import com.example.vetfootprint.activitys.Login;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth mAuth;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        toolbar = findViewById(R.id.toolbar);
         mAuth = FirebaseAuth.getInstance();
 
         testUser();
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_integrantes, R.id.nav_sair)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.nav_top_bar, menu);
         return true;
     }
 
