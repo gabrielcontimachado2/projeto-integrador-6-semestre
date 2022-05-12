@@ -116,7 +116,6 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
 
     @Override
     public void onDataChanged() {
-        Toast.makeText(context, "Atualizado", Toast.LENGTH_SHORT).show();
         super.onDataChanged();
     }
 }

@@ -51,12 +51,11 @@ public class AnimalController {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference().child("animal").child(idAnimal);
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener animalListener = new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                AnimalModel animalModel = dataSnapshot.getValue(AnimalModel.class);
 
-
-                AnimalModel animalModel = snapshot.getValue(AnimalModel.class);
                 perfilAnimal.animalName.setText(animalModel.getAnimalName());
                 perfilAnimal.animalBreed.setText(animalModel.getAnimelBreed());
                 perfilAnimal.animalAge.setText(animalModel.getAnimalAge());
@@ -74,12 +73,13 @@ public class AnimalController {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("cancelado", "Erro ao atualizar", databaseError.toException());
             }
+        };
 
-        });
-
+        ref.addListenerForSingleValueEvent(animalListener);
 
     }
 

@@ -90,6 +90,7 @@ public class PerfilAnimal extends AppCompatActivity {
                 backNormalMode();
                 break;
             case R.id.floating_done_edit_card:
+                backNormalMode();
                 saveEdit(testFields());
                 break;
             case R.id.image_view_card_photo_animal:
