@@ -51,7 +51,7 @@ public class AnimalController {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference().child("animal").child(idAnimal);
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -71,8 +71,6 @@ public class AnimalController {
 
                 Glide.with(context).load(sUrlImage).into(perfilAnimal.animalImageView);
 
-                Toast.makeText(perfilAnimal, "Falha ao carregar o animal", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -81,6 +79,7 @@ public class AnimalController {
             }
 
         });
+
 
     }
 

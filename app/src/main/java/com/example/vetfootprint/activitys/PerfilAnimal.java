@@ -1,13 +1,16 @@
 package com.example.vetfootprint.activitys;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +22,13 @@ import com.bumptech.glide.Glide;
 import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.AnimalController;
+import com.example.vetfootprint.model.AnimalModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.vicmikhailau.maskededittext.MaskedEditText;
@@ -37,7 +45,6 @@ public class PerfilAnimal extends AppCompatActivity {
     public MaskedEditText  animalMedicineTime;
     public ImageView animalImageView;
     private Uri imageUri;
-    private Boolean isSuccess = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +57,8 @@ public class PerfilAnimal extends AppCompatActivity {
     }
 
     private void lerDados() {
-
         AnimalController animalController = new AnimalController();
-        animalController.recuperaAnimal(getIntent().getStringExtra("idAnimal"), this);
+        animalController.recuperaAnimal(getIntent().getStringExtra("idAnimal"), PerfilAnimal.this);
 
     }
 
@@ -84,7 +90,7 @@ public class PerfilAnimal extends AppCompatActivity {
                 backNormalMode();
                 break;
             case R.id.floating_done_edit_card:
-                saveEdit();
+                saveEdit(testFields());
                 break;
             case R.id.image_view_card_photo_animal:
                 abrirGaleria();
@@ -92,7 +98,7 @@ public class PerfilAnimal extends AppCompatActivity {
         }
     }
 
-    private void saveEdit() {
+    private void saveEdit(Boolean isSuccess) {
         if (isSuccess) {
             //Variaveis
             String sNomeDoAnimal = animalName.getText().toString();
@@ -129,6 +135,23 @@ public class PerfilAnimal extends AppCompatActivity {
         floatingSaveEdit.setVisibility(View.INVISIBLE);
         floatingBackNormalMode.setClickable(true);
         floatingBackNormalMode.setVisibility(View.INVISIBLE);
+    }
+
+    public boolean testFields() {
+
+        String sNomeDoAnimal = animalName.getText().toString();
+        String sRacaDoAnimal = animalBreed.getText().toString();
+        String sIdadeDoAnimal = animalAge.getText().toString();
+        String sPorteDoAnimal = animalSize.getText().toString();
+        String sMedicamentoAnimal = animalMedicine.getText().toString();
+        String sHorarioMedicamento = animalMedicineTime.getText().toString();
+        String sObservacoesDoAnimal = animalObs.getText().toString();
+
+
+        if (sNomeDoAnimal.isEmpty() || sRacaDoAnimal.isEmpty() || sIdadeDoAnimal.isEmpty() || sPorteDoAnimal.isEmpty() || sMedicamentoAnimal.isEmpty()|| sHorarioMedicamento.isEmpty() || sObservacoesDoAnimal.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private void editMode() {
