@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,6 +21,8 @@ import com.example.vetfootprint.activitys.PerfilAnimal;
 import com.example.vetfootprint.model.modelRecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,7 +45,15 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
         holder.sDogAge.setText(model.getAnimalAge() + " anos");
         Glide.with(holder.imageDog.getContext()).load(model.getUrlImageDog()).into(holder.imageDog);
 
-
+        holder.cardViewDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PerfilAnimal.class);
+                intent.putExtra("idAnimal", model.getIdAnimal());
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
         holder.deleteDog.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.deleteDog.getContext());
@@ -50,50 +61,41 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
             builder.setMessage("Você tem certeza que deseja deletar o animal?");
 
             builder.setPositiveButton("SIM", (dialogInterface, i) -> {
-                FirebaseDatabase.getInstance().getReference().child("animal")
-                        .child(Objects.requireNonNull(getRef(position).getKey())).removeValue();
+                DatabaseReference mbase = FirebaseDatabase.getInstance().getReference().child("animal").child(model.getIdAnimal());
 
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
-                StorageReference referenceImage = storageReference.child("animal/" + model.getIdAnimal());
+                mbase.removeValue()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
+                                StorageReference referenceImage = storageReference.child("animal/" + model.getIdAnimal());
+                                referenceImage.delete();
 
-                referenceImage.delete();
-            });
+                                notifyDataSetChanged();
+                                Toast.makeText(context, "Animal foi deletado com suceso!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-
-
-
-
-            builder.setNegativeButton("NÃO", (dialogInterface, i) -> {
+            }).setNegativeButton("NÃO", (dialogInterface, i) -> {
 
             });
 
             builder.show();
 
+
         });
 
-       holder.cardViewDog.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-                Intent intent = new Intent(context, PerfilAnimal.class);
-                intent.putExtra("idAnimal", model.getIdAnimal());
-                intent.putExtra("animalName", model.getAnimalName());
-                intent.putExtra("image", model.getUrlImageDog());
-                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-           }
-       });
-
-
     }
+
 
     @NonNull
     @Override
     public myviewhodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_cachorro,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_cachorro, parent, false);
         return new myviewhodler(view);
     }
 
-    public static class myviewhodler extends RecyclerView.ViewHolder{
+    public static class myviewhodler extends RecyclerView.ViewHolder {
 
         ImageView imageDog, deleteDog;
         TextView sDogName, sDogAge;
@@ -112,4 +114,9 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
         }
     }
 
+    @Override
+    public void onDataChanged() {
+        Toast.makeText(context, "Atualizado", Toast.LENGTH_SHORT).show();
+        super.onDataChanged();
+    }
 }

@@ -55,8 +55,8 @@ public class AnimalController {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                AnimalModel animalModel = snapshot.getValue(AnimalModel.class);
 
+                AnimalModel animalModel = snapshot.getValue(AnimalModel.class);
                 perfilAnimal.animalName.setText(animalModel.getAnimalName());
                 perfilAnimal.animalBreed.setText(animalModel.getAnimelBreed());
                 perfilAnimal.animalAge.setText(animalModel.getAnimalAge());
@@ -71,14 +71,16 @@ public class AnimalController {
 
                 Glide.with(context).load(sUrlImage).into(perfilAnimal.animalImageView);
 
+                Toast.makeText(perfilAnimal, "Falha ao carregar o animal", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
 
+        });
 
     }
 

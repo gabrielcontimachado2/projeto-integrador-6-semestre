@@ -20,8 +20,10 @@ import com.example.vetfootprint.activitys.CadastroAnimal;
 import com.example.vetfootprint.controller.adapterCardDog;
 import com.example.vetfootprint.model.modelRecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -77,8 +79,6 @@ public class Home extends Fragment  {
         super.onStop();
         adapterCardDog.stopListening();
     }
-
-
 
 
 }
