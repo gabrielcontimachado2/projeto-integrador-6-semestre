@@ -1,39 +1,22 @@
 package com.example.vetfootprint.activitys;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.BoringLayout;
-import android.text.method.KeyListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.controller.AnimalController;
-import com.example.vetfootprint.model.AnimalModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.vicmikhailau.maskededittext.MaskedEditText;
-
-import java.util.Objects;
 
 public class PerfilAnimal extends AppCompatActivity {
 
@@ -45,6 +28,7 @@ public class PerfilAnimal extends AppCompatActivity {
     public MaskedEditText  animalMedicineTime;
     public ImageView animalImageView;
     private Uri imageUri;
+    public ProgressBar progressBarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +59,7 @@ public class PerfilAnimal extends AppCompatActivity {
         animalMedicine = findViewById(R.id.edt_medicamento_animal_card_perfil);
         animalMedicineTime = findViewById(R.id.edt_horario_medicamento_animal_card);
         animalObs = findViewById(R.id.edt_observacoes_animal_card);
+        progressBarPerfil = findViewById(R.id.progress_bar_perfil_animal_card);
 
     }
 

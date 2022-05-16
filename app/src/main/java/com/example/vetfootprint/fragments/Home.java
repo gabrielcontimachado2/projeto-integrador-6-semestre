@@ -1,11 +1,14 @@
 package com.example.vetfootprint.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -17,20 +20,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vetfootprint.R;
 import com.example.vetfootprint.activitys.CadastroAnimal;
-import com.example.vetfootprint.controller.adapterCardDog;
+import com.example.vetfootprint.controller.AdapterCardDog;
 import com.example.vetfootprint.model.modelRecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.firebase.ui.database.SnapshotParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Home extends Fragment  {
 
-    adapterCardDog adapterCardDog;
+
+    AdapterCardDog adapterCardDog;
     DatabaseReference mBase;
 
     @SuppressLint("NotifyDataSetChanged")
@@ -39,7 +41,11 @@ public class Home extends Fragment  {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
-        mBase = FirebaseDatabase.getInstance().getReference().child("animal");
+        SharedPreferences pref = getActivity().getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitutionCurrentUser = pref.getString("institutionId", "");
+        String roleUser = pref.getString("userRole", "");
+
+        mBase = FirebaseDatabase.getInstance().getReference("usuario").child(idInstitutionCurrentUser).child("animal");
 
         FloatingActionButton floatingBtnAdicionarAnimal = view.findViewById(R.id.floating_btn_add_dog_home_fragment);
         RecyclerView recyclerViewAnimal = view.findViewById(R.id.recyclerviewAnimal);
@@ -53,16 +59,17 @@ public class Home extends Fragment  {
                         .build();
 
 
-        adapterCardDog = new adapterCardDog(options, getContext());
+        adapterCardDog = new AdapterCardDog(options, getContext());
         recyclerViewAnimal.setAdapter(adapterCardDog);
         recyclerViewAnimal.setItemAnimator(null);
-
 
 
 
         floatingBtnAdicionarAnimal.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), CadastroAnimal.class);
             startActivity(intent);
+            Toast.makeText(getActivity(), "id da instituição: "+ idInstitutionCurrentUser,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Role do user : "+ roleUser,Toast.LENGTH_SHORT).show();
         });
 
         return view;

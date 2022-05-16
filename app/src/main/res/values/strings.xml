@@ -75,8 +75,11 @@
     <string name="btn_enter">Entrar</string>
     <string name="menu_busca">buscar</string>
     <string name="menu_sair">Sair</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="rg_integrante_card">RG do integrante</string>
+    <string name="funcao_integrante_card">Função do integrante</string>
+    <string name="password_integrante_card">Senha do integrante</string>
+    <string name="text_cpf_integrante_card">CPF do integrante</string>
+    <string name="name_integrante_card">Nome do integrante</string>
 
 
 </resources>

@@ -4,6 +4,7 @@ package com.example.vetfootprint.controller;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.Objects;
-
-public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, adapterCardDog.myviewhodler> {
+public class AdapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, AdapterCardDog.myviewhodler> {
 
     Context context;
 
-    public adapterCardDog(@NonNull FirebaseRecyclerOptions<modelRecyclerView> options, Context context) {
+    public AdapterCardDog(@NonNull FirebaseRecyclerOptions<modelRecyclerView> options, Context context) {
         super(options);
 
         this.context = context;
@@ -61,13 +60,17 @@ public class adapterCardDog extends FirebaseRecyclerAdapter<modelRecyclerView, a
             builder.setMessage("Você tem certeza que deseja deletar o animal?");
 
             builder.setPositiveButton("SIM", (dialogInterface, i) -> {
-                DatabaseReference mbase = FirebaseDatabase.getInstance().getReference().child("animal").child(model.getIdAnimal());
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+                String idInstitution = sharedPreferences.getString("institutionId", "");
+
+                DatabaseReference mbase = FirebaseDatabase.getInstance().getReference("usuario").child(idInstitution).child("animal").child(model.getIdAnimal());
 
                 mbase.removeValue()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
+                                StorageReference storageReference = FirebaseStorage.getInstance().getReference("foto");
                                 StorageReference referenceImage = storageReference.child("animal/" + model.getIdAnimal());
                                 referenceImage.delete();
 

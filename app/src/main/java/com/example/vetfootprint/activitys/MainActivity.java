@@ -1,19 +1,22 @@
-package com.example.vetfootprint;
+package com.example.vetfootprint.activitys;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
+
 import android.view.Menu;
 import android.widget.Toolbar;
 
-import com.example.vetfootprint.activitys.Login;
+import com.example.vetfootprint.R;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,24 +26,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vetfootprint.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private BottomNavigationView bottomNavigationView;
-    private FirebaseAuth mAuth;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        toolbar = findViewById(R.id.toolbar);
-        mAuth = FirebaseAuth.getInstance();
+        SharedPreferences pref = getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitutionCurrentUser = pref.getString("institutionId", "");
+        String roleUser = pref.getString("userRole", "");
 
-        testUser();
+        toolbar = findViewById(R.id.toolbar);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
 
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -71,15 +74,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.nav_sair:
-
-                return true;
+                loggoutUser();
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onContextItemSelected(item);
     }
+
 
 
     @Override
@@ -89,18 +95,12 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void testUser(){
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.d("myTag", "dentro do teste usuario null");
-            Intent intent = new Intent(MainActivity.this, Login.class);
-            startActivity(intent);
-            finish();
-        }
-
-
+    public void loggoutUser(){
+        FirebaseAuth.getInstance().signOut();
+        SharedPreferences sharedPref = getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
+        editor.commit();
     }
-
 
 }

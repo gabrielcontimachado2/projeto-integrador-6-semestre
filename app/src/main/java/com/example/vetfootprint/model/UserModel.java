@@ -9,23 +9,29 @@ public class UserModel {
 
     String userNameInstitution;
     String userEmailInstituion;
-    String userPasswordIstitution;
     String userCnpjInstitution;
     String userPhoneInstitution;
     String userAddressInstitution;
     String userRoleIstitution;
+    String urlImageInstitution;
+    String idInstitution;
 
-    public UserModel(String userNameInstitution, String userEmailInstituion, String userPasswordIstitution, String userCnpjInstitution, String userPhoneInstitution, String userAddressInstitution, String userRoleIstitution) {
+    public UserModel() {
+
+    }
+
+    public UserModel(String userNameInstitution, String userEmailInstituion, String userCnpjInstitution, String userPhoneInstitution, String userAddressInstitution, String userRoleIstitution, String urlImageInstitution, String idInstitution) {
 
         Log.d("myTag", "This is my message" + userNameInstitution + " ");
 
         this.userNameInstitution = userNameInstitution;
         this.userEmailInstituion = userEmailInstituion;
-        this.userPasswordIstitution = userPasswordIstitution;
         this.userCnpjInstitution = userCnpjInstitution;
         this.userPhoneInstitution = userPhoneInstitution;
         this.userAddressInstitution = userAddressInstitution;
         this.userRoleIstitution = userRoleIstitution;
+        this.urlImageInstitution = urlImageInstitution;
+        this.idInstitution = idInstitution;
     }
 
     public String getUserNameInstitution() {
@@ -36,20 +42,28 @@ public class UserModel {
         this.userNameInstitution = userNameInstitution;
     }
 
+    public String getIdInstitution() {
+        return idInstitution;
+    }
+
+    public void setIdInstitution(String idInstitution) {
+        this.idInstitution = idInstitution;
+    }
+
+    public String getUrlImageInstitution() {
+        return urlImageInstitution;
+    }
+
+    public void setUrlImageInstitution(String urlImageInstitution) {
+        this.urlImageInstitution = urlImageInstitution;
+    }
+
     public String getUserEmailInstituion() {
         return userEmailInstituion;
     }
 
     public void setUserEmailInstituion(String userEmailInstituion) {
         this.userEmailInstituion = userEmailInstituion;
-    }
-
-    public String getUserPasswordIstitution() {
-        return userPasswordIstitution;
-    }
-
-    public void setUserPasswordIstitution(String userPasswordIstitution) {
-        this.userPasswordIstitution = userPasswordIstitution;
     }
 
     public String getUserCnpjInstitution() {

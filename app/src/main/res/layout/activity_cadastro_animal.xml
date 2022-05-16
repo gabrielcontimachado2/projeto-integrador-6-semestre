@@ -178,9 +178,16 @@
                     android:layout_width="@dimen/image_width"
                     android:layout_height="@dimen/image_height"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:layout_marginBottom="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default_micro"
                     android:src="@drawable/ic_add_image"
                     android:onClick="onClick" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginBottom="@dimen/margin_default"/>
 
             </LinearLayout>
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -46,6 +46,7 @@
                 tools:text="Integrante 03" />
 
             <TextView
+                android:id="@+id/text_function_integrante_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default_micro"
@@ -60,11 +61,15 @@
                 android:id="@+id/image_button_excluir_card_integrante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/azul_card"
+                android:layout_marginTop="@dimen/margin_default_micro"
+                android:layout_marginEnd="@dimen/margin_default_micro"
+                android:layout_marginBottom="@dimen/margin_default_micro"
+                android:background="@color/azul_card"
                 android:src="@drawable/ic_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

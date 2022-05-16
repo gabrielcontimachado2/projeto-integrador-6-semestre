@@ -175,27 +175,31 @@
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_foto_integrante"
+                <TextView
+                    android:id="@+id/text_view_photo_integrante"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:background="@drawable/ic_img_register_button"
-                    android:padding="@dimen/margin_default_micro"
-                    android:text="@string/btn_fotos_integrante"
-                    android:textColor="@color/white" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Selecione uma foto pro integrante"
+                    android:textSize="@dimen/text_size_button"
+                    android:textColor="@color/black"/>
 
-                <Button
-                    android:id="@+id/btn_documento_integrante"
+                <ImageView
+                    android:id="@+id/imageView_upload_integrante_photo"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default_micro"
+                    android:src="@drawable/ic_add_image"
+                    android:onClick="onClick" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_integrante"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_default"
-                    android:layout_marginBottom="@dimen/margin_default"
-                    android:background="@drawable/ic_img_register_button"
-                    android:padding="@dimen/margin_default_micro"
-                    android:text="@string/btn_documento_integrante"
-                    android:textColor="@color/white" />
-
+                    android:visibility="invisible"
+                    android:layout_marginBottom="@dimen/margin_default"/>
 
             </LinearLayout>
 
@@ -206,11 +210,12 @@
         android:id="@+id/floating_btn_cadastrar_integrante_tela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_default_minimum"
-        android:layout_marginBottom="@dimen/margin_default_minimum"
-        android:backgroundTint="@color/azul_principal"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default_large"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
         android:src="@drawable/ic_img_check_button"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="36dp" />

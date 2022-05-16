@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
@@ -33,14 +35,8 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
                      edtPorteAnimal,
                      edtMedicamentoAnimal,
                      edtObservacoesAnimal;
+    public ProgressBar progressBarAnimal;
     private MaskedEditText edtHorarioMedicamento;
-    String sNomeDoAnimal,
-           sRacaDoAnimal,
-           sIdadeDoAnimal,
-           sPorteDoAnimal,
-           sMedicamentoAnimal,
-           sHorarioMedicamento,
-           sObservacoesDoAnimal;
 
 
     @Override
@@ -63,14 +59,8 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
         edtHorarioMedicamento = findViewById(R.id.edttext_horario_medicamento);
         edtObservacoesAnimal = findViewById(R.id.edttext_observacoes_animal);
         uploadAnimalPhoto =  findViewById(R.id.imageView_upload_photo);
+        progressBarAnimal = findViewById(R.id.progress_bar_animal);
 
-        String sNomeDoAnimal = edtNomeAnimal.getText().toString();
-        String sRacaDoAnimal = edtRacaAnimal.getText().toString();
-        String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
-        String sPorteDoAnimal = edtPorteAnimal.getText().toString();
-        String sMedicamentoAnimal = edtMedicamentoAnimal.getText().toString();
-        String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
-        String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
     }
 
     public void onClick(View view) {
@@ -89,9 +79,7 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
 
 
     private void saveData(boolean isSuccess) {
-        // Tudo dentro de um try
         if (isSuccess){
-            //Variaveis
             String sNomeDoAnimal = edtNomeAnimal.getText().toString();
             String sRacaDoAnimal = edtRacaAnimal.  getText().toString();
             String sIdadeDoAnimal = edtIdadeAnimal.getText().toString();
@@ -100,14 +88,12 @@ public class CadastroAnimal extends AppCompatActivity implements View.OnClickLis
             String sHorarioMedicamento = edtHorarioMedicamento.getText().toString();
             String sObservacoesDoAnimal = edtObservacoesAnimal.getText().toString();
 
-            //Passando os dados para a controler persistir no banco de dados
             animalController.cadastrarAnimal(sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
                                              sHorarioMedicamento, sObservacoesDoAnimal, CadastroAnimal.this, imageUri);
 
             hideKeyboardFrom(this, edtObservacoesAnimal);
             limparCampos();
         } else {
-            // Deu merda, retorna uma exceção
             Toast.makeText(this, "Não foi possível prosseguir, verifique os campos de dados e tente novamente.", Toast.LENGTH_SHORT).show();
         }
     }

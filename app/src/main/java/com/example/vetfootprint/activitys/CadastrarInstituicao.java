@@ -1,10 +1,12 @@
 package com.example.vetfootprint.activitys;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.BoringLayout;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
@@ -36,6 +40,9 @@ public class CadastrarInstituicao extends AppCompatActivity {
             edtCnpjInstituicao,
             edtTelefoneInstituicao,
             edtEnderecoInstituicao;
+    public ProgressBar progressBarInstitution;
+    public Uri imageUri;
+    public ImageView uploadImageInstitution;
     public Boolean operacao = null;
 
 
@@ -58,6 +65,8 @@ public class CadastrarInstituicao extends AppCompatActivity {
         edtCnpjInstituicao = findViewById(R.id.edttext_cnpj_instituicao);
         edtTelefoneInstituicao = findViewById(R.id.edttext_telefone_instituicao);
         edtEnderecoInstituicao = findViewById(R.id.edttext_endereco_instituicao);
+        uploadImageInstitution = findViewById(R.id.imageView_upload_institution_photo);
+        progressBarInstitution = findViewById(R.id.progress_bar_instituicao);
 
     }
 
@@ -69,6 +78,9 @@ public class CadastrarInstituicao extends AppCompatActivity {
             case R.id.floating_btn_cadastrar_instituicao_tela:
                 saveData(testFields());
                 break;
+            case R.id.imageView_upload_institution_photo:
+                abrirGaleria();
+                break;
         }
     }
 
@@ -79,7 +91,7 @@ public class CadastrarInstituicao extends AppCompatActivity {
     }
 
     private void saveData(boolean isSuccess) {
-        // Tudo dentro de um try
+
         if (isSuccess) {
             String sName = edtNomeInstituicao.getText().toString();
             String sEmail = edtEmailInstituicao.getText().toString();
@@ -87,17 +99,14 @@ public class CadastrarInstituicao extends AppCompatActivity {
             String sCnpj = edtCnpjInstituicao.getText().toString();
             String sPhone = edtTelefoneInstituicao.getText().toString();
             String sAddress = edtEnderecoInstituicao.getText().toString();
-            String sRole = "admin";
-
-            UserModel userModel = new UserModel(sName, sEmail, sPassword, sCnpj, sPhone, sAddress, sRole);
 
             CadastroInstituicaoController cadastroInstituicaoController = new CadastroInstituicaoController();
 
-            cadastroInstituicaoController.cadastrarInstituicao(userModel, CadastrarInstituicao.this);
+            cadastroInstituicaoController.cadastrarInstituicao(sName, sEmail, sPassword, sCnpj, sPhone, sAddress, imageUri, CadastrarInstituicao.this);
 
 
         } else {
-            // Deu merda, retorna uma exceção
+
             Toast.makeText(this, "Não foi possível prosseguir, verifique os campos de dados e tente novamente.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -122,7 +131,7 @@ public class CadastrarInstituicao extends AppCompatActivity {
         String sEnderecoInstituicao = edtEnderecoInstituicao.getText().toString();
 
 
-        if (sNomeInstituicao.isEmpty() || sEmailInstituicao.isEmpty() || sSenhaInstituicao.isEmpty() || sConfirmarSenhaInstituicao.isEmpty() || sCnpjInstituicao.isEmpty() || sTelefoneInstituicao.isEmpty() || sEnderecoInstituicao.isEmpty()) {
+        if (sNomeInstituicao.isEmpty() || sEmailInstituicao.isEmpty() || sSenhaInstituicao.isEmpty() || sConfirmarSenhaInstituicao.isEmpty() || sCnpjInstituicao.isEmpty() || sTelefoneInstituicao.isEmpty() || sEnderecoInstituicao.isEmpty() || imageUri == null) {
             return false;
         }
 
@@ -132,5 +141,25 @@ public class CadastrarInstituicao extends AppCompatActivity {
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(CadastroAnimal.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public void abrirGaleria(){
+        Intent intentGallery = new Intent();
+        intentGallery.setAction(Intent.ACTION_GET_CONTENT);
+        intentGallery.setType("image/*");
+        startActivityForResult(intentGallery, 2);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 2 && resultCode == RESULT_OK && data !=null){
+
+            imageUri = data.getData();
+            uploadImageInstitution.setImageURI(imageUri);
+
+        }
     }
 }

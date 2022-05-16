@@ -1,60 +1,111 @@
 package com.example.vetfootprint.controller;
 
-import android.text.BoringLayout;
+import android.icu.lang.UScript;
+import android.net.Uri;
 import android.util.Log;
-import android.widget.Button;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.vetfootprint.MainActivity;
-import com.example.vetfootprint.R;
 import com.example.vetfootprint.activitys.CadastrarInstituicao;
-import com.example.vetfootprint.activitys.CadastroAnimal;
-import com.example.vetfootprint.activitys.Login;
 import com.example.vetfootprint.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class CadastroInstituicaoController {
 
     public static Boolean operacao;
 
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    private FirebaseUser currentUser;
 
     public CadastroInstituicaoController() {
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+
     }
 
-    public void cadastrarInstituicao(@NonNull UserModel userModel, CadastrarInstituicao cadastrarInstituicao){
+
+    public void cadastrarInstituicao(@NonNull String userNameInstitution, String userEmailInstituion, String userPasswordIstitution,
+                                     String userCnpjInstitution, String userPhoneInstitution, String userAddressInstitution,
+                                     Uri imageUri, CadastrarInstituicao cadastrarInstituicao) {
 
 
-        mAuth.createUserWithEmailAndPassword(userModel.getUserEmailInstituion(), userModel.getUserPasswordIstitution())
+        //Criar um usuário no auth
+        mAuth.createUserWithEmailAndPassword(userEmailInstituion, userPasswordIstitution)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            cadastrarInstituicao.progressBarInstitution.setVisibility(View.VISIBLE);
 
-                        if(task.isSuccessful()){
-                           FirebaseDatabase.getInstance().getReference("usuarios")
-                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                   .setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                               @Override
-                               public void onComplete(@NonNull Task<Void> task) {
+                            currentUser = mAuth.getCurrentUser();
 
-                                   if (task.isSuccessful()){
-                                       Toast.makeText(cadastrarInstituicao, "Sua instituição foi cadastrada com sucesso", Toast.LENGTH_SHORT).show();
-                                   }
-                                   else{
-                                       Toast.makeText(cadastrarInstituicao, "Não foi possivel realizar seu cadastro tente novamente", Toast.LENGTH_SHORT).show();
-                                   }
-                               }
-                           });
+                            UserProfileChangeRequest userRoleSetUp = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName("admin")
+                                    .build();
+
+                            //Adicionar no auth qual o tipo de usuário
+                            currentUser.updateProfile(userRoleSetUp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Log.d("Teste", "role adicionada");
+                                    }
+                                }
+                            });
+
+                            String idInstitution = currentUser.getUid();
+                            StorageReference refereImage = FirebaseStorage.getInstance().getReference("foto").child("usuario/" + idInstitution);
+
+                            //Adicionar a foto da instituição no storage
+                            refereImage.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    refereImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String urlPhotoInstitution = uri.toString();
+                                            String userRole = "admin";
+
+                                            UserModel institutionModel = new UserModel(userNameInstitution, userEmailInstituion, userCnpjInstitution,
+                                                                                       userPhoneInstitution, userAddressInstitution, userRole,
+                                                                                       urlPhotoInstitution, idInstitution);
+
+                                            DatabaseReference mbase = FirebaseDatabase.getInstance().getReference("usuario").child(idInstitution);
+
+                                            //Enviar pro realtime o perfil desse usuário que foi cadastrado no auth, criando um nó com o UID do user com o auth
+                                            mbase.setValue(institutionModel)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            cadastrarInstituicao.progressBarInstitution.setVisibility(View.INVISIBLE);
+                                                            Toast.makeText(cadastrarInstituicao, "A instituição foi cadastrada com sucesso!!", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            cadastrarInstituicao.progressBarInstitution.setVisibility(View.INVISIBLE);
+                                                            Toast.makeText(cadastrarInstituicao, "Não foi possível realizar o cadastro da sua instituição, tente novamente!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    });
+                                }
+                            });
+
                         }
                     }
                 });

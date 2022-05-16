@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.PerfilAnimal">
+    tools:context=".activitys.PerfilIntegrante">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_top"
+        android:id="@+id/card_view_top_integrante"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:cardBackgroundColor="@color/azul_principal"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/card_back_button"
+                android:id="@+id/card_back_button_integrante"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/image_view_height_card"
                 android:layout_marginStart="@dimen/margin_default_micro"
@@ -40,54 +40,54 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_top">
+        app:layout_constraintTop_toBottomOf="@+id/card_view_top_integrante">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_perfil_one"
+            android:id="@+id/card_view_perfil_one_integrante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_view_top">
+            app:layout_constraintTop_toBottomOf="@+id/card_view_top_integrante">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_card_perfil_animal"
+                android:id="@+id/constraint_layout_card_perfil_integrante"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/image_view_card_photo_animal"
+                    android:id="@+id/image_view_card_photo_integrante"
                     android:layout_width="@dimen/image_width"
                     android:layout_height="@dimen/image_height"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default_large"
+                    android:clickable="false"
                     android:onClick="onClick"
                     android:saveEnabled="false"
-                    android:clickable="false"
                     android:src="@color/azul_principal"
-                    app:layout_constraintBottom_toTopOf="@id/textview_porte_animal_card_perfil"
-                    app:layout_constraintEnd_toStartOf="@id/edttext_raca_animal_card_perfil"
+                    app:layout_constraintBottom_toTopOf="@id/textview_email_integrante_card_perfil"
+                    app:layout_constraintEnd_toStartOf="@id/edttext_funcao_integrante_card_perfil"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/constraint_layout_card_perfil_animal"
+                    app:layout_constraintTop_toTopOf="@+id/constraint_layout_card_perfil_integrante"
                     app:shapeAppearanceOverlay="@style/radiusImageView" />
 
                 <TextView
-                    android:id="@+id/textview_animal_name_card"
+                    android:id="@+id/textview_integrante_name_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_card"
                     android:layout_marginTop="@dimen/margin_default_large"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/name_animal_card"
+                    android:text="@string/name_integrante_card"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
-                    app:layout_constraintBottom_toTopOf="@+id/edittext_name_animal_card_perfil"
-                    app:layout_constraintStart_toEndOf="@id/image_view_card_photo_animal"
+                    app:layout_constraintBottom_toTopOf="@+id/edittext_name_integrante_card_perfil"
+                    app:layout_constraintStart_toEndOf="@id/image_view_card_photo_integrante"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/edittext_name_animal_card_perfil"
+                    android:id="@+id/edittext_name_integrante_card_perfil"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default_micro"
@@ -96,24 +96,24 @@
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
-                    app:layout_constraintTop_toTopOf="@id/image_view_card_photo_animal" />
+                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_integrante"
+                    app:layout_constraintTop_toTopOf="@id/image_view_card_photo_integrante" />
 
                 <TextView
-                    android:id="@+id/textview_raca_animal_card_perfil"
+                    android:id="@+id/textview_funcao_integrante_card_perfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_card"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/raca_animal_card"
+                    android:text="@string/funcao_integrante_card"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
-                    app:layout_constraintBottom_toTopOf="@id/edttext_raca_animal_card_perfil"
-                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal" />
+                    app:layout_constraintBottom_toTopOf="@id/edttext_funcao_integrante_card_perfil"
+                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_integrante" />
 
                 <EditText
-                    android:id="@+id/edttext_raca_animal_card_perfil"
+                    android:id="@+id/edttext_funcao_integrante_card_perfil"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default_micro"
@@ -122,23 +122,23 @@
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
-                    app:layout_constraintTop_toBottomOf="@id/edittext_name_animal_card_perfil" />
+                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_integrante"
+                    app:layout_constraintTop_toBottomOf="@id/edittext_name_integrante_card_perfil" />
 
                 <TextView
-                    android:id="@+id/textview_idade_animal_card_perfil"
+                    android:id="@+id/textview_rg_integrante_card_perfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_card"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/idade_animal_card"
+                    android:text="@string/rg_integrante_card"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
-                    app:layout_constraintBottom_toTopOf="@id/edttext_idade_animal_card_perfil"
-                    app:layout_constraintStart_toEndOf="@id/image_view_card_photo_animal" />
+                    app:layout_constraintBottom_toTopOf="@id/edttext_rg_integrante_card_perfil"
+                    app:layout_constraintStart_toEndOf="@id/image_view_card_photo_integrante" />
 
                 <EditText
-                    android:id="@+id/edttext_idade_animal_card_perfil"
+                    android:id="@+id/edttext_rg_integrante_card_perfil"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default_micro"
@@ -147,25 +147,25 @@
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_animal"
-                    app:layout_constraintTop_toBottomOf="@id/edttext_raca_animal_card_perfil" />
+                    app:layout_constraintStart_toEndOf="@+id/image_view_card_photo_integrante"
+                    app:layout_constraintTop_toBottomOf="@id/edttext_funcao_integrante_card_perfil" />
 
                 <TextView
-                    android:id="@+id/textview_porte_animal_card_perfil"
+                    android:id="@+id/textview_email_integrante_card_perfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_two_card"
                     android:layout_marginTop="@dimen/margin_default"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/porte_animal_card"
+                    android:text="@string/email_integrante"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
-                    app:layout_constraintBottom_toTopOf="@id/edttext_porte_animal_card_perfil"
+                    app:layout_constraintBottom_toTopOf="@id/edttext_email_integrante_card_perfil"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/image_view_card_photo_animal" />
+                    app:layout_constraintTop_toBottomOf="@id/image_view_card_photo_integrante" />
 
                 <EditText
-                    android:id="@+id/edttext_porte_animal_card_perfil"
+                    android:id="@+id/edttext_email_integrante_card_perfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
@@ -174,24 +174,24 @@
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textview_porte_animal_card_perfil" />
+                    app:layout_constraintTop_toBottomOf="@id/textview_email_integrante_card_perfil" />
 
 
                 <TextView
-                    android:id="@+id/textview_medicamento_animal_card_perfil"
+                    android:id="@+id/textview_password_integrante_card_perfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_two_card"
                     android:layout_marginTop="@dimen/margin_top_textview_two_card"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/medicamento_animal_card"
+                    android:text="@string/password_integrante_card"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edttext_porte_animal_card_perfil" />
+                    app:layout_constraintTop_toBottomOf="@id/edttext_email_integrante_card_perfil" />
 
                 <EditText
-                    android:id="@+id/edt_medicamento_animal_card_perfil"
+                    android:id="@+id/edttext_password_integrante_card_perfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
@@ -199,69 +199,46 @@
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:drawableTint="@color/black"
                     android:enabled="false"
+                    android:inputType="textPassword"
+                    android:text="*************"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textview_medicamento_animal_card_perfil" />
+                    app:layout_constraintTop_toBottomOf="@+id/textview_password_integrante_card_perfil" />
 
 
                 <TextView
-                    android:id="@+id/textview_horario_animal_card_perfil"
+                    android:id="@+id/textview_cpf_integrante_card_perfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start_textview_two_card"
                     android:layout_marginTop="@dimen/margin_top_textview_two_card"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/horarios_medicamento_animal_card"
+                    android:text="@string/text_cpf_integrante_card"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_card_view_perfil"
+                    app:layout_constraintBottom_toTopOf="@+id/edttext_cpf_integrante_card"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edt_medicamento_animal_card_perfil" />
+                    app:layout_constraintTop_toBottomOf="@id/edttext_password_integrante_card_perfil" />
 
                 <com.vicmikhailau.maskededittext.MaskedEditText
-                    android:id="@+id/edt_horario_medicamento_animal_card"
-                    app:mask="##:## ##:## ##:##"
+                    android:id="@+id/edttext_cpf_integrante_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginEnd="@dimen/margin_default"
-                    android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
-                    android:enabled="false"
-                    android:drawableTint="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textview_horario_animal_card_perfil" />
-
-                <TextView
-                    android:id="@+id/textview_observacoes_animal_card_perfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start_textview_two_card"
-                    android:layout_marginTop="@dimen/margin_top_textview_two_card"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/observacoes_animal_card"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_card_view_perfil"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edt_horario_medicamento_animal_card" />
-
-                <EditText
-                    android:id="@+id/edt_observacoes_animal_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:layout_marginBottom="@dimen/margin_default_large"
+                    android:layout_marginBottom="@dimen/margin_default_micro"
                     android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                     android:drawableTint="@color/black"
                     android:enabled="false"
-                    android:inputType="textLongMessage"
-                    app:layout_constraintBottom_toTopOf="@+id/floating_edt_perfil_animal_card"
+                    app:layout_constraintBottom_toTopOf="@id/progress_bar_perfil_integrante_card"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textview_observacoes_animal_card_perfil" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textview_cpf_integrante_card_perfil"
+                    app:mask="###.###.###-##" />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating_back_edit_animal_card"
+                    android:id="@+id/floating_back_edit_integrante_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_bottom_floating"
@@ -274,10 +251,10 @@
                     android:visibility="invisible"
                     app:borderWidth="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/floating_edt_perfil_animal_card" />
+                    app:layout_constraintEnd_toStartOf="@id/floating_edt_perfil_integrante_card" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating_done_edit_card"
+                    android:id="@+id/floating_done_edit_integrante_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_default"
@@ -293,7 +270,7 @@
                     app:maxImageSize="36dp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating_edt_perfil_animal_card"
+                    android:id="@+id/floating_edt_perfil_integrante_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_default"
@@ -307,15 +284,14 @@
                     app:maxImageSize="36dp" />
 
                 <ProgressBar
-                    android:id="@+id/progress_bar_perfil_animal_card"
+                    android:id="@+id/progress_bar_perfil_integrante_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:layout_marginBottom="@dimen/margin_default"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/floating_edt_perfil_integrante_card"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edt_observacoes_animal_card"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/floating_edt_perfil_animal_card"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

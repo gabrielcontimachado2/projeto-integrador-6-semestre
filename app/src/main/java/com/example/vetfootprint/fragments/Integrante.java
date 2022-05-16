@@ -2,30 +2,43 @@ package com.example.vetfootprint.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.vetfootprint.R;
-import com.example.vetfootprint.activitys.CadastroAnimal;
 import com.example.vetfootprint.activitys.CadastroIntegrante;
 import com.example.vetfootprint.activitys.Login;
+import com.example.vetfootprint.activitys.MainActivity;
+import com.example.vetfootprint.controller.AdapterCardIntegrante;
+import com.example.vetfootprint.model.modelRecyclerViewIntegrante;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Integrante extends Fragment {
 
+    Context context;
+    AdapterCardIntegrante adapterCardIntegrante;
     private IntegranteViewModel mViewModel;
     private FloatingActionButton floatingBtnAdicionarIntegrante;
     private Button btnLogout;
+    DatabaseReference mBase;
 
     public static Integrante newInstance() {
         return new Integrante();
@@ -36,9 +49,31 @@ public class Integrante extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.integrante_fragment, container, false);
 
+        SharedPreferences pref = getActivity().getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitutionCurrentUser = pref.getString("institutionId", "");
+        String currentUser = pref.getString("currentUserUid", "");
+        String roleUser = pref.getString("userRole", "");
+
+        context = getContext();
+
+        mBase = FirebaseDatabase.getInstance().getReference("usuario").child("integrante");
 
         floatingBtnAdicionarIntegrante = view.findViewById(R.id.floating_btn_add_integrantes_fragment);
         btnLogout = view.findViewById(R.id.logout);
+        RecyclerView recyclerviewIntegrante = view.findViewById(R.id.recyclerviewIntegrante);
+
+        recyclerviewIntegrante.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        FirebaseRecyclerOptions<modelRecyclerViewIntegrante> options =
+                new FirebaseRecyclerOptions.Builder<modelRecyclerViewIntegrante>()
+                        .setQuery(mBase, modelRecyclerViewIntegrante.class)
+                        .build();
+
+
+        adapterCardIntegrante = new AdapterCardIntegrante(options, context);
+        recyclerviewIntegrante.setAdapter(adapterCardIntegrante);
+        recyclerviewIntegrante.setItemAnimator(null);
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +97,18 @@ public class Integrante extends Fragment {
         return view;
     }
 
+    private void testUser() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String userRole = sharedPreferences.getString("userRole", "");
+
+        if(userRole.equals("normal")){
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+            Toast.makeText(getContext(), "Você não tem acesso ao registro de integrantes!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -71,10 +118,21 @@ public class Integrante extends Fragment {
 
     public void loggoutUser(){
         FirebaseAuth.getInstance().signOut();
-        //FirebaseAuth mAuth;
-        //mAuth = FirebaseAuth.getInstance();
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
-        //mAuth.signOut();
+        SharedPreferences sharedPref = getContext().getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
+        editor.commit();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapterCardIntegrante.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapterCardIntegrante.stopListening();
+    }
 }

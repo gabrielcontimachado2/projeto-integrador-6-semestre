@@ -1,8 +1,10 @@
 package com.example.vetfootprint.controller;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,8 +50,11 @@ public class AnimalController {
     */
     public void recuperaAnimal(String idAnimal, PerfilAnimal perfilAnimal) {
 
+        SharedPreferences pref = perfilAnimal.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitution = pref.getString("institutionId", "");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference().child("animal").child(idAnimal);
+        DatabaseReference ref = database.getReference("usuario").child(idInstitution).child("animal").child(idAnimal);
 
         ValueEventListener animalListener = new ValueEventListener() {
             @Override
@@ -90,36 +95,45 @@ public class AnimalController {
         String idAnimal = UUID.randomUUID().toString();
 
         //Referenciar em qual nó vai ser salvo, baseado no id do animal
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("fotos");
-        StorageReference referenceImage = storageReference.child("animal/" + idAnimal);
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("foto").child("animal/" + idAnimal);
 
         //Salvar imagem no Storage do firebase
-        referenceImage.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                referenceImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                cadastroAnimal.progressBarAnimal.setVisibility(View.VISIBLE);
+                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         //String para url do animal
                         String urlImageDog = uri.toString();
 
+                        SharedPreferences sharedPreferences = cadastroAnimal.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+                        String idInstitution = sharedPreferences.getString("institutionId", "");
+
                         //Instancia um modelo de animal para salvar no realtime
-                        AnimalModel animalModel = new AnimalModel(idAnimal, sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
-                                sHorarioMedicamento, sObservacoesDoAnimal, urlImageDog);
+                        AnimalModel animalModel = new AnimalModel(idInstitution,idAnimal, sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
+                                                                  sHorarioMedicamento, sObservacoesDoAnimal, urlImageDog);
+
+                        FirebaseDatabase mBase = FirebaseDatabase.getInstance();
 
                         //Salvar no realtime o animal
-                        FirebaseDatabase.getInstance().getReference("animal")
+                        mBase.getReference("usuario")
+                                .child(idInstitution)
+                                .child("animal")
                                 .child(idAnimal)
                                 .setValue(animalModel)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
+                                        cadastroAnimal.progressBarAnimal.setVisibility(View.INVISIBLE);
                                         Toast.makeText(cadastroAnimal, "Animal foi cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        cadastroAnimal.progressBarAnimal.setVisibility(View.INVISIBLE);
                                         Toast.makeText(cadastroAnimal, "Não foi possivel realizar o cadastro tente novamente!" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -136,8 +150,12 @@ public class AnimalController {
     public void editarAnimal(String idAnimal, String sNomeDoAnimal, String sRacaDoAnimal, String sIdadeDoAnimal, String sPorteDoAnimal, String sMedicamentoAnimal, String sHorarioMedicamento,
                              String sObservacoesDoAnimal, PerfilAnimal perfilAnimal) {
 
+
+        SharedPreferences sharedPreferences = perfilAnimal.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitution = sharedPreferences.getString("institutionId", "");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference().child("animal").child(idAnimal);
+        DatabaseReference ref = database.getReference("usuario").child(idInstitution).child("animal").child(idAnimal);
 
         //Instancia um hash map
         HashMap animalMap = new HashMap();
@@ -173,31 +191,40 @@ public class AnimalController {
         //Referenciar em qual nó vai ser salvo, baseado no id do animal
         Log.d("tag", "teste id: " + idAnimal);
 
-        StorageReference referenceImage = storageReference.child("animal/" + idAnimal);
+        StorageReference referenceImage = storageReference.child("foto").child("animal/" + idAnimal);
+
+
+        SharedPreferences sharedPreferences = perfilAnimal.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitution = sharedPreferences.getString("institutionId", "");
 
         //salvar imagem no Storage do firebase
         referenceImage.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                perfilAnimal.progressBarPerfil.setVisibility(View.VISIBLE);
                 referenceImage.getDownloadUrl()
                         .addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String urlImageDog = uri.toString();
 
-                                FirebaseDatabase.getInstance().getReference("animal")
+                                FirebaseDatabase.getInstance().getReference("usuario")
+                                        .child(idInstitution)
+                                        .child("animal")
                                         .child(idAnimal)
                                         .child("urlImageDog")
                                         .setValue(urlImageDog)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
+                                                perfilAnimal.progressBarPerfil.setVisibility(View.INVISIBLE);
                                                 Toast.makeText(perfilAnimal, "Foto do animal foi alterada com sucesso!", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
+                                                perfilAnimal.progressBarPerfil.setVisibility(View.INVISIBLE);
                                                 Toast.makeText(perfilAnimal, "Não foi possivel atualizar a foto do animal : " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });

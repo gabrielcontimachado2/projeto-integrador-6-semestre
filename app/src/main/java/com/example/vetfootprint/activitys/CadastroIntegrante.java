@@ -1,16 +1,22 @@
 package com.example.vetfootprint.activitys;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
+import com.example.vetfootprint.controller.IntegranteController;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CadastroIntegrante extends AppCompatActivity {
@@ -25,6 +31,9 @@ public class CadastroIntegrante extends AppCompatActivity {
             edtCpfIntegrante,
             edtRgIntegrante,
             edtTelefoneIntegrante;
+    public ImageView uploadImageIntegrante;
+    public ProgressBar progressBarIntegrate;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,8 @@ public class CadastroIntegrante extends AppCompatActivity {
         edtCpfIntegrante = findViewById(R.id.edttext_cpf_integrante);
         edtRgIntegrante = findViewById(R.id.edttext_rg_integrante);
         edtTelefoneIntegrante = findViewById(R.id.edttext_telefone_integrante);
+        progressBarIntegrate = findViewById(R.id.progress_bar_integrante);
+        uploadImageIntegrante = findViewById(R.id.imageView_upload_integrante_photo);
     }
 
     public void onClick(View view) {
@@ -54,18 +65,29 @@ public class CadastroIntegrante extends AppCompatActivity {
                 finish();
                 break;
             case R.id.floating_btn_cadastrar_integrante_tela:
-
+                saveData(testFields());
+                break;
+            case R.id.imageView_upload_integrante_photo:
+                abrirGaleria();
+                break;
         }
     }
 
     private void saveData(boolean isSuccess) {
-        // Tudo dentro de um try
         if (isSuccess) {
-            Toast.makeText(this, "Salvado com sucesso! Parabéns!", Toast.LENGTH_SHORT).show();
-            hideKeyboardFrom(this, edtTelefoneIntegrante);
-            limparCampos();
+            String sName = edtNomeIntegrante.getText().toString();
+            String sPassword = edtSenhaIntegrante.getText().toString();
+            String sEmail = edtEmailIntegrante.getText().toString();
+            String sFuncao = edtFuncaoIntegrante.getText().toString();
+            String sCpf = edtCpfIntegrante.getText().toString();
+            String sRg = edtRgIntegrante.getText().toString();
+            String sPhone = edtTelefoneIntegrante.getText().toString();
+
+            IntegranteController integranteController = new IntegranteController();
+
+            integranteController.cadastrarIntegrante(sName, sPassword, sEmail, sFuncao, sCpf, sRg, sPhone, imageUri, CadastroIntegrante.this);
+
         } else {
-            // Deu merda, retorna uma exceção
             Toast.makeText(this, "Não foi possível prosseguir, verifique os campos de dados e tente novamente.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -91,7 +113,7 @@ public class CadastroIntegrante extends AppCompatActivity {
         String sRgIntegrante = edtRgIntegrante.getText().toString();
         String sTelefoneIntegrante = edtTelefoneIntegrante.getText().toString();
 
-        if (sNomeIntegrante.isEmpty() || sEmailIntegrante.isEmpty() || sSenhaIntegrante.isEmpty() || sConfirmaSenhaIntegrante.isEmpty() || sFuncaoIntegrante.isEmpty()|| sCpfIntegrante.isEmpty() || sRgIntegrante.isEmpty() || sTelefoneIntegrante.isEmpty()) {
+        if (sNomeIntegrante.isEmpty() || sEmailIntegrante.isEmpty() || sSenhaIntegrante.isEmpty() || sConfirmaSenhaIntegrante.isEmpty() || sFuncaoIntegrante.isEmpty()|| sCpfIntegrante.isEmpty() || sRgIntegrante.isEmpty() || sTelefoneIntegrante.isEmpty() || imageUri == null) {
             return false;
         }
 
@@ -101,5 +123,25 @@ public class CadastroIntegrante extends AppCompatActivity {
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(CadastroAnimal.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public void abrirGaleria(){
+        Intent intentGallery = new Intent();
+        intentGallery.setAction(Intent.ACTION_GET_CONTENT);
+        intentGallery.setType("image/*");
+        startActivityForResult(intentGallery, 2);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 2 && resultCode == RESULT_OK && data !=null){
+
+            imageUri = data.getData();
+            uploadImageIntegrante.setImageURI(imageUri);
+
+        }
     }
 }

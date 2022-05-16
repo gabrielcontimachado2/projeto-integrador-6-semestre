@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vetfootprint.MainActivity;
 import com.example.vetfootprint.R;
-import com.example.vetfootprint.controller.CadastroInstituicaoController;
 import com.example.vetfootprint.controller.LoginController;
 import com.example.vetfootprint.model.LoginModel;
-import com.example.vetfootprint.model.UserModel;
 
 public class Login extends AppCompatActivity {
 
@@ -68,24 +64,13 @@ public class Login extends AppCompatActivity {
 
             LoginController loginController = new LoginController();
 
-            operacao = loginController.singInUser(loginModel, this);
-
-            if(operacao ==  true){
-                login();
-            }
-
-
+            loginController.singInUser(loginModel, this);
         } else {
-            // Deu merda, retorna uma exceção
+
             Toast.makeText(this, "Não foi possível prosseguir, verifique os campos de dados e tente novamente.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void login() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     public boolean testFields() {
         String sEmail    = edtLogin.getText().toString();

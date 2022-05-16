@@ -63,7 +63,7 @@
                         android:id="@+id/edttext_nome_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textShortMessage"/>
+                        android:inputType="textShortMessage" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +79,7 @@
                         android:id="@+id/edttext_email_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textShortMessage"/>
+                        android:inputType="textShortMessage" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -95,7 +95,7 @@
                         android:id="@+id/edttext_senha_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +111,7 @@
                         android:id="@+id/edttext_confirma_senha_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +127,7 @@
                         android:id="@+id/edttext_cnpj_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"/>
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -143,7 +143,7 @@
                         android:id="@+id/edttext_telefone_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"/>
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -159,19 +159,34 @@
                         android:id="@+id/edttext_endereco_instituicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textShortMessage"/>
+                        android:inputType="textShortMessage" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_add_logo_instituicao"
+                <TextView
+                    android:id="@+id/text_view_foto_institution_choose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:layout_marginBottom="@dimen/margin_default"
-                    android:background="@drawable/ic_img_register_button"
-                    android:padding="@dimen/margin_default_micro"
-                    android:text="@string/btn_logo_instituição"
-                    android:textColor="@color/white" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Selecione uma foto pro animal"
+                    android:textSize="@dimen/text_size_button"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:id="@+id/imageView_upload_institution_photo"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_add_image"
+                    android:layout_marginBottom="@dimen/margin_default_micro"
+                    android:onClick="onClick" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_instituicao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginBottom="@dimen/margin_default"/>
 
             </LinearLayout>
 
@@ -182,13 +197,15 @@
         android:id="@+id/floating_btn_cadastrar_instituicao_tela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_default_minimum"
-        android:layout_marginBottom="@dimen/margin_default_minimum"
-        android:backgroundTint="@color/azul_principal"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default_large"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
         android:src="@drawable/ic_img_check_button"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="36dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
