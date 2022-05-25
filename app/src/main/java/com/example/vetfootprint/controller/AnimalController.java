@@ -41,7 +41,7 @@ public class AnimalController {
         //Construtor do animal
         //AnimalModel animal = new AnimalModel();
 
-        storageReference = FirebaseStorage.getInstance().getReference("fotos");
+
     }
 
 
@@ -191,7 +191,7 @@ public class AnimalController {
         //Referenciar em qual nó vai ser salvo, baseado no id do animal
         Log.d("tag", "teste id: " + idAnimal);
 
-        StorageReference referenceImage = storageReference.child("foto").child("animal/" + idAnimal);
+        StorageReference referenceImage = FirebaseStorage.getInstance().getReference("foto").child("animal/" + idAnimal);
 
 
         SharedPreferences sharedPreferences = perfilAnimal.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);

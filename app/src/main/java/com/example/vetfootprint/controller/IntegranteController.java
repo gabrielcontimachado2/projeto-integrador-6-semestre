@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.example.vetfootprint.activitys.CadastroIntegrante;
+import com.example.vetfootprint.activitys.PerfilAnimal;
 import com.example.vetfootprint.activitys.PerfilIntegrante;
 import com.example.vetfootprint.fragments.Integrante;
 import com.example.vetfootprint.model.AnimalModel;
@@ -32,18 +33,21 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class IntegranteController {
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private String idIntegrante;
+    private StorageReference storageReference;
 
     public IntegranteController() {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void recuperarIntegrante(String idIntegrante, PerfilIntegrante perfilIntegrante){
+    public void recuperarIntegrante(String idIntegrante, PerfilIntegrante perfilIntegrante) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("usuario").child("integrante").child(idIntegrante);
@@ -58,6 +62,8 @@ public class IntegranteController {
                 perfilIntegrante.rgIntegrante.setText(integranteModel.getRgIntegrante());
                 perfilIntegrante.emailIntegrante.setText(integranteModel.getEmailIntegrante());
                 perfilIntegrante.cpfIntegrante.setText(integranteModel.getCpfIntegrante());
+                perfilIntegrante.phoneIntegrante.setText(integranteModel.getPhoneIntegrate());
+                perfilIntegrante.passwordIntegrante.setText(integranteModel.getPasswordIntegrante());
                 String sUrlImage = integranteModel.getUrlImageIntegrante();
 
                 //Pegar um context antes, dentro do glide."with" tava bugando(Não esquecer)
@@ -101,13 +107,13 @@ public class IntegranteController {
                     currentUser.updateProfile(userRoleSetUp).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 Log.d("Teste", "role adicionada");
                             }
                         }
                     });
 
-                    String idIntegrante = UUID.randomUUID().toString();
+                    String idIntegrante = currentUser.getUid();
 
                     StorageReference refereImage = FirebaseStorage.getInstance().getReference("foto").child("usuario/" + idIntegrante);
 
@@ -121,7 +127,7 @@ public class IntegranteController {
                                     String userRole = "normal";
 
                                     IntegranteModel integranteModel = new IntegranteModel(nameIntegrante, emailIntegrante, functionIntegrante, cpfIntegrante,
-                                                                                          rgIntegrante, phoneIntegrate, urlImageIntegrate, userRole, idInstitution, idIntegrante);
+                                            rgIntegrante, phoneIntegrate, urlImageIntegrate, userRole, idInstitution, idIntegrante, passwordIntegrante);
 
                                     DatabaseReference mbase = FirebaseDatabase.getInstance().getReference("usuario").child("integrante").child(idIntegrante);
 
@@ -151,6 +157,107 @@ public class IntegranteController {
 
     }
 
+    /*Metodos que precisam realizar operações
+    de editar o integrante
+    */
+    public void editarIntegrante(String nameIntegrante, String passwordIntegrante, String emailIntegrante, String functionIntegrante, String cpfIntegrante, String rgIntegrante,
+                                 String phoneIntegrate, PerfilIntegrante perfilIntegrante) {
+
+
+        SharedPreferences sharedPreferences = perfilIntegrante.getSharedPreferences("idInstitutionCurrentUser", Context.MODE_PRIVATE);
+        String idInstitution = sharedPreferences.getString("institutionId", "");
+
+        FirebaseAuth mbase = FirebaseAuth.getInstance();
+
+
+        mbase.signInWithEmailAndPassword(emailIntegrante, passwordIntegrante).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    perfilIntegrante.progressBarIntegrante.setVisibility(View.VISIBLE);
+                    FirebaseUser user = mbase.getCurrentUser();
+                    idIntegrante = user.getUid();
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference ref = database.getReference("usuario").child("integrante").child(idIntegrante);
+
+                    //Instancia um hash map
+                    HashMap integranteMap = new HashMap();
+                    integranteMap.put("nameIntegrante", nameIntegrante);
+                    integranteMap.put("emailIntegrante", emailIntegrante);
+                    integranteMap.put("passwordIntegrante", passwordIntegrante);
+                    integranteMap.put("functionIntegrante", functionIntegrante);
+                    integranteMap.put("cpfIntegrante", cpfIntegrante);
+                    integranteMap.put("rgIntegrante", rgIntegrante);
+                    integranteMap.put("phoneIntegrate", phoneIntegrate);
+
+
+                    //Atualizar o integrante no real time
+                    ref.updateChildren(integranteMap)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    perfilIntegrante.progressBarIntegrante.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(perfilIntegrante, "Integrante foi atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    perfilIntegrante.progressBarIntegrante.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(perfilIntegrante, "Não foi possivel atualizar o perfil do integrante, tente novamente" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
+
+
+    }
+
+    public void editarFotoIntegrante(PerfilIntegrante perfilIntegrante, String idIntegrante, Uri uri) {
+
+        StorageReference referenceImage = FirebaseStorage.getInstance().getReference("foto").child("usuario/" + idIntegrante);
+
+        //salvar imagem no Storage do firebase
+        referenceImage.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                perfilIntegrante.progressBarIntegrante.setVisibility(View.VISIBLE);
+                referenceImage.getDownloadUrl()
+                        .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String urlImageDog = uri.toString();
+
+                                FirebaseDatabase.getInstance().getReference("usuario")
+                                        .child("integrante")
+                                        .child(idIntegrante)
+                                        .child("urlImageIntegrante")
+                                        .setValue(urlImageDog)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                perfilIntegrante.progressBarIntegrante.setVisibility(View.INVISIBLE);
+                                                Toast.makeText(perfilIntegrante, "Foto do integrante foi alterada com sucesso!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                perfilIntegrante.progressBarIntegrante.setVisibility(View.INVISIBLE);
+                                                Toast.makeText(perfilIntegrante, "Não foi possivel atualizar a foto do integrante : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                            }
+                        });
+
+            }
+        });
+
+
+    }
 
 
 }

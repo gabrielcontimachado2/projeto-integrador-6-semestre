@@ -75,7 +75,6 @@ public class LoginController {
 
                                 } else if (user.getDisplayName().equals("normal")) {
 
-
                                     FirebaseDatabase mbase = FirebaseDatabase.getInstance();
                                     DatabaseReference ref = mbase.getReference("usuario").child("integrante").child(user.getUid());
 

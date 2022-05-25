@@ -20,13 +20,14 @@ import com.vicmikhailau.maskededittext.MaskedEditText;
 
 public class PerfilIntegrante extends AppCompatActivity {
 
-    public EditText nameIntegrante, functionIntegrante, rgIntegrante, emailIntegrante, passwordIntegrante;
+    public EditText nameIntegrante, functionIntegrante, rgIntegrante, emailIntegrante, passwordIntegrante, phoneIntegrante;
     public ImageView backButton;
     public FloatingActionButton floatingEditMode, floatingBackNormal, floatingSaveEdit;
     public MaskedEditText cpfIntegrante;
     public ImageView imageIntegrante;
     public Uri imageUri;
     public ProgressBar progressBarIntegrante;
+    IntegranteController integranteController = new IntegranteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class PerfilIntegrante extends AppCompatActivity {
         cpfIntegrante = findViewById(R.id.edttext_cpf_integrante_card);
         progressBarIntegrante = findViewById(R.id.progress_bar_perfil_integrante_card);
         imageIntegrante = findViewById(R.id.image_view_card_photo_integrante);
+        phoneIntegrante = findViewById(R.id.edttext_phone_integrante_card);
     }
 
     private void lerDados() {
@@ -93,6 +95,7 @@ public class PerfilIntegrante extends AppCompatActivity {
         emailIntegrante.setEnabled(false);
         passwordIntegrante.setEnabled(false);
         cpfIntegrante.setEnabled(false);
+        phoneIntegrante.setEnabled(false);
 
         floatingEditMode.setVisibility(View.VISIBLE);
         floatingSaveEdit.setClickable(false);
@@ -109,6 +112,7 @@ public class PerfilIntegrante extends AppCompatActivity {
         emailIntegrante.setEnabled(true);
         passwordIntegrante.setEnabled(true);
         cpfIntegrante.setEnabled(true);
+        phoneIntegrante.setEnabled(true);
 
 
         floatingEditMode.setVisibility(View.INVISIBLE);
@@ -124,13 +128,13 @@ public class PerfilIntegrante extends AppCompatActivity {
             String sFunctionIntegrante = functionIntegrante.getText().toString();
             String sRgIntegrante = rgIntegrante.getText().toString();
             String sEmailIntegrante = emailIntegrante.getText().toString();
-            String sSasswordIntegrante = passwordIntegrante.getText().toString();
+            String sPasswordIntegrante = passwordIntegrante.getText().toString();
             String sCpfIntegrante = cpfIntegrante.getText().toString();
+            String sPhoneNumber = phoneIntegrante.getText().toString();
 
 
             //Passando os dados para a controler persistir no banco de dados
-            //animalController.editarAnimal(getIntent().getStringExtra("idAnimal"), sNomeDoAnimal, sRacaDoAnimal, sIdadeDoAnimal, sPorteDoAnimal, sMedicamentoAnimal,
-            //        sHorarioMedicamento, sObservacoesDoAnimal, PerfilAnimal.this);
+            integranteController.editarIntegrante(snameIntegrante, sPasswordIntegrante, sEmailIntegrante, sFunctionIntegrante, sCpfIntegrante, sRgIntegrante, sPhoneNumber, PerfilIntegrante.this);
 
         } else {
 
@@ -146,9 +150,10 @@ public class PerfilIntegrante extends AppCompatActivity {
         String sEmailIntegrante = emailIntegrante.getText().toString();
         String sSasswordIntegrante = passwordIntegrante.getText().toString();
         String sCpfIntegrante = cpfIntegrante.getText().toString();
+        String sPhoneIntegrante = phoneIntegrante.getText().toString();
 
 
-        if (snameIntegrante.isEmpty() || sFunctionIntegrante.isEmpty() || sRgIntegrante.isEmpty() || sEmailIntegrante.isEmpty() || sSasswordIntegrante.isEmpty()|| sCpfIntegrante.isEmpty() || imageUri == null) {
+        if (snameIntegrante.isEmpty() || sSasswordIntegrante.isEmpty() || sFunctionIntegrante.isEmpty() || sRgIntegrante.isEmpty() || sEmailIntegrante.isEmpty() || sPhoneIntegrante.isEmpty() || sCpfIntegrante.isEmpty()) {
             return false;
         }
         return true;
@@ -163,7 +168,7 @@ public class PerfilIntegrante extends AppCompatActivity {
     }
 
     public void editarFoto() {
-        //animalController.editarFotoAnimal(PerfilAnimal.this, getIntent().getStringExtra("idAnimal"), imageUri);
+       integranteController.editarFotoIntegrante(this, getIntent().getStringExtra("idIntegrante"),imageUri);
 
     }
 

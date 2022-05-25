@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Selecione uma foto pro animal"
+                    android:text="@string/selecione_foto_animal"
                     android:textSize="@dimen/text_size_button"
                     android:textColor="@color/black"/>
 

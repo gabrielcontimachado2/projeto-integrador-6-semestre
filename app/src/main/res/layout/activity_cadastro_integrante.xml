@@ -62,7 +62,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_nome_integrante"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,7 +78,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_email_integrante"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -124,7 +126,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttext_funcao_integrante"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -136,11 +139,13 @@
                     android:layout_marginEnd="@dimen/margin_lateral"
                     android:hint="@string/cpf_integrante">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/edttext_cpf_integrante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        app:mask="###.###.###-##" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -152,11 +157,12 @@
                     android:layout_marginEnd="@dimen/margin_lateral"
                     android:hint="@string/rg_integrante">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/edttext_rg_integrante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        app:mask="##.###.###-#" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -168,11 +174,12 @@
                     android:layout_marginEnd="@dimen/margin_lateral"
                     android:hint="@string/telefone_integrante">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/edttext_telefone_integrante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        app:mask="##-#####-####" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -181,9 +188,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Selecione uma foto pro integrante"
-                    android:textSize="@dimen/text_size_button"
-                    android:textColor="@color/black"/>
+                    android:text="@string/selecione_foto_integrante"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_button" />
 
                 <ImageView
                     android:id="@+id/imageView_upload_integrante_photo"
@@ -191,15 +198,15 @@
                     android:layout_height="@dimen/image_height"
                     android:layout_marginTop="@dimen/margin_default"
                     android:layout_marginBottom="@dimen/margin_default_micro"
-                    android:src="@drawable/ic_add_image"
-                    android:onClick="onClick" />
+                    android:onClick="onClick"
+                    android:src="@drawable/ic_add_image" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar_integrante"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:layout_marginBottom="@dimen/margin_default"/>
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

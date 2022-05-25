@@ -1,6 +1,5 @@
 package com.example.vetfootprint.activitys;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.BoringLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,15 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
-import com.example.vetfootprint.controller.CadastroInstituicaoController;
-import com.example.vetfootprint.model.UserModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.vetfootprint.controller.InstituicaoController;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class CadastrarInstituicao extends AppCompatActivity {
 
@@ -100,9 +90,9 @@ public class CadastrarInstituicao extends AppCompatActivity {
             String sPhone = edtTelefoneInstituicao.getText().toString();
             String sAddress = edtEnderecoInstituicao.getText().toString();
 
-            CadastroInstituicaoController cadastroInstituicaoController = new CadastroInstituicaoController();
+            InstituicaoController instituicaoController = new InstituicaoController();
 
-            cadastroInstituicaoController.cadastrarInstituicao(sName, sEmail, sPassword, sCnpj, sPhone, sAddress, imageUri, CadastrarInstituicao.this);
+            instituicaoController.cadastrarInstituicao(sName, sEmail, sPassword, sCnpj, sPhone, sAddress, imageUri, CadastrarInstituicao.this);
 
 
         } else {
@@ -162,4 +152,5 @@ public class CadastrarInstituicao extends AppCompatActivity {
 
         }
     }
+
 }

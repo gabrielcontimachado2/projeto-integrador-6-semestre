@@ -54,12 +54,13 @@ public class Integrante extends Fragment {
         String currentUser = pref.getString("currentUserUid", "");
         String roleUser = pref.getString("userRole", "");
 
+        testUser();
+
         context = getContext();
 
         mBase = FirebaseDatabase.getInstance().getReference("usuario").child("integrante");
 
         floatingBtnAdicionarIntegrante = view.findViewById(R.id.floating_btn_add_integrantes_fragment);
-        btnLogout = view.findViewById(R.id.logout);
         RecyclerView recyclerviewIntegrante = view.findViewById(R.id.recyclerviewIntegrante);
 
         recyclerviewIntegrante.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -73,17 +74,6 @@ public class Integrante extends Fragment {
         adapterCardIntegrante = new AdapterCardIntegrante(options, context);
         recyclerviewIntegrante.setAdapter(adapterCardIntegrante);
         recyclerviewIntegrante.setItemAnimator(null);
-
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loggoutUser();
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
-
-            }
-        });
 
 
         floatingBtnAdicionarIntegrante.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +113,7 @@ public class Integrante extends Fragment {
         editor.clear();
         editor.commit();
     }
+
 
     @Override
     public void onStart() {

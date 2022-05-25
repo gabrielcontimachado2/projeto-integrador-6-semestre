@@ -12,12 +12,13 @@ public class IntegranteModel {
     String userRoleInstitution = "";
     String idInstitution = "";
     String idIntegrante = "";
+    String passwordIntegrante = "";
 
     public IntegranteModel(){
 
     }
 
-    public IntegranteModel(String nameIntegrante, String emailIntegrante, String functionIntegrante, String cpfIntegrante, String rgIntegrante, String phoneIntegrate, String urlImageIntegrante, String userRoleInstitution, String idInstitution, String idIntegrante) {
+    public IntegranteModel(String nameIntegrante, String emailIntegrante, String functionIntegrante, String cpfIntegrante, String rgIntegrante, String phoneIntegrate, String urlImageIntegrante, String userRoleInstitution, String idInstitution, String idIntegrante, String passwordIntegrante) {
         this.nameIntegrante = nameIntegrante;
         this.emailIntegrante = emailIntegrante;
         this.functionIntegrante = functionIntegrante;
@@ -28,6 +29,15 @@ public class IntegranteModel {
         this.userRoleInstitution = userRoleInstitution;
         this.idInstitution = idInstitution;
         this.idIntegrante = idIntegrante;
+        this.passwordIntegrante = passwordIntegrante;
+    }
+
+    public String getPasswordIntegrante() {
+        return passwordIntegrante;
+    }
+
+    public void setPasswordIntegrante(String passwordIntegrante) {
+        this.passwordIntegrante = passwordIntegrante;
     }
 
     public String getIdIntegrante() {

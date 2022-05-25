@@ -68,8 +68,6 @@ public class Home extends Fragment  {
         floatingBtnAdicionarAnimal.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), CadastroAnimal.class);
             startActivity(intent);
-            Toast.makeText(getActivity(), "id da instituição: "+ idInstitutionCurrentUser,Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), "Role do user : "+ roleUser,Toast.LENGTH_SHORT).show();
         });
 
         return view;
