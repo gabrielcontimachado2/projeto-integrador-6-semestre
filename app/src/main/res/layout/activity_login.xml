@@ -106,10 +106,11 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/termos_contrato"
+                    android:id="@+id/termos_contrato_uso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default_micro_micro"
+                    android:onClick="onClick"
                     app:layout_constraintStart_toEndOf="@+id/checkbox_login_termos"
                     app:layout_constraintTop_toTopOf="@id/checkbox_login_termos"
                     android:textColor="@color/vermelho_delete_card"

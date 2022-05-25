@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vetfootprint.R;
@@ -16,6 +17,7 @@ import com.example.vetfootprint.model.LoginModel;
 public class Login extends AppCompatActivity {
 
     private EditText edtLogin, edtSenha;
+    private TextView txtTermos;
     private Button btnEnter, btnRegister;
     Boolean operacao;
 
@@ -35,6 +37,8 @@ public class Login extends AppCompatActivity {
         edtSenha = findViewById(R.id.edittext_user_password);
         btnEnter =  findViewById(R.id.btn_enter);
         btnRegister = findViewById(R.id.btn_register_institution);
+        txtTermos = findViewById(R.id.termos_contrato_uso);
+
     }
 
     public void onClick(View view) {
@@ -45,7 +49,15 @@ public class Login extends AppCompatActivity {
             case R.id.btn_register_institution:
                 registerInstitution();
                 break;
+            case R.id.termos_contrato_uso:
+                abrirTermos();
+                break;
         }
+    }
+
+    private void abrirTermos() {
+        Intent intent = new Intent(Login.this, TermosUso.class);
+        startActivity(intent);
     }
 
     private void registerInstitution() {

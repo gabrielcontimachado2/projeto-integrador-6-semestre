@@ -11,6 +11,9 @@
         android:theme="@style/Theme.VetFootPrint"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activitys.TermosUso"
+            android:exported="false" />
+        <activity
             android:name=".activitys.PerfilUsuario"
             android:exported="false" />
         <activity

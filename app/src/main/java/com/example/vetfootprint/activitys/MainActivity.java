@@ -12,12 +12,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 
 import com.bumptech.glide.Glide;
 import com.example.vetfootprint.R;
-
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.vetfootprint.controller.InstituicaoController;
 import com.example.vetfootprint.model.AnimalModel;
